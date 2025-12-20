@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
   GraduationCap, BookOpen, Users, ChevronDown, 
+  
   CheckCircle, Send, Clock, Navigation, Award, ShieldCheck 
 } from 'lucide-react';
 

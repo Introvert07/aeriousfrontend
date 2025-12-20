@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 
 // --- ASSET IMPORT ---
-import cplHeaderImg from '../../assets/CPL-IMG.WEBP';
+import cplHeaderImg from '../../assets/CPL-IMG.webp';
 
 const CommercialPilotLicense = () => {
   const headerRef = useRef(null);

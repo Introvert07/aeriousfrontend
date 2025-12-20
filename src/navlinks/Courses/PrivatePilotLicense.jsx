@@ -13,6 +13,7 @@ const PrivatePilotLicense = () => {
   const [openFaq, setOpenFaq] = useState(null);
 
   // Parallax Logic
+  
   const { scrollYProgress } = useScroll({
     target: headerRef,
     offset: ["start start", "end start"]

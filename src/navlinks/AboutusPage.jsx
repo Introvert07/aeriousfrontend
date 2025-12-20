@@ -291,6 +291,8 @@ const AboutPage = () => {
             </motion.div>
         </div>
     );
+
+    
 };
 
 export default AboutPage;

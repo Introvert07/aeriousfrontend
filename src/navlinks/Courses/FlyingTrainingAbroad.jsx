@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Globe, ArrowRight, ShieldCheck } from 'lucide-react';
 
 // --- ASSET IMPORTS ---
-import mainHeroImg from '../../assets/FIC-IMG.WEBP';
+import mainHeroImg from '../../assets/FIC-IMG.webp';
 import usaImg from '../../assets/usa-flight.jpg';
 import spainImg from '../../assets/spain-flight.png';
 import australiaImg from '../../assets/australia-flight.png';
