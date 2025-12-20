@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  /* The shine moves across from 0% to 30% of the time */
+  30% {
+    left: 100%;
+  }
+  /* It stays hidden from 30% to 100% to create a "pause" */
+  100% {
+    left: 100%;
+  }
+}
+
+.animate-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%; /* Slightly wider for a softer look */
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.4), /* Slightly brighter for better visibility */
+    transparent
+  );
+  transform: skewX(-25deg);
+  /* 4s duration makes it move slowly, infinite keeps it going */
+  animation: shine 2s ease-in-out infinite;
+}
