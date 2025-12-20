@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 
 // --- ASSET IMPORT ---
-import courseImg from '../../assets/PPL-IMG.WEBP';
+import courseImg from '../../assets/PPL-IMG.webp';
 
 const PrivatePilotLicense = () => {
   const headerRef = useRef(null);
