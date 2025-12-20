@@ -2,9 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bell, ChevronLeft, ChevronRight } from 'lucide-react';
 
-import banner1 from '../assets/Website-Banner-1.WEBP';
-import banner2 from '../assets/Website-Banner-2.WEBP';
-import banner3 from '../assets/Website-Banner-3.WEBP';
+import banner1 from '../assets/Website-Banner-1.webp';
+import banner2 from '../assets/Website-Banner-2.webp';
+import banner3 from '../assets/Website-Banner-3.webp';
 
 const BANNER_IMAGES = [
     { src: banner1, alt: "Aerius Aviators Campus" },
