@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X, Plus, Minus } from 'lucide-react';
-import satiLogo from '../assets/LOGO.WEBP';
+import satiLogo from '../assets/LOGO.webp';
 
 const Navbar = () => {
     const location = useLocation();
