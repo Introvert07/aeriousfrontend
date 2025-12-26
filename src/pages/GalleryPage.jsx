@@ -8,9 +8,24 @@ import gallery4 from '../assets/gallery4.webp';
 import gallery5 from '../assets/gallery5.webp';
 import gallery6 from '../assets/gallery6.webp';
 
+// NEW JPG ASSETS
+import new1 from '../assets/new1.jpeg';
+import new2 from '../assets/new2.jpeg';
+import new3 from '../assets/new3.jpeg';
+import new4 from '../assets/new4.jpeg';
+import new5 from '../assets/new5.jpeg';
+import new6 from '../assets/new6.jpeg';
+import new7 from '../assets/new7.jpeg';
+import new8 from '../assets/new8.jpeg';
+
 const AeriousLightMarquee = () => {
   const [selectedImg, setSelectedImg] = useState(null);
-  const academyImages = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6];
+
+  // Updated array with all images
+  const academyImages = [
+    gallery1, gallery2, gallery3, gallery4, gallery5, gallery6,
+    new1, new2, new3, new4, new5, new6, new7, new8
+  ];
 
   return (
     <div className="bg-white flex flex-col gap-1 md:gap-2 overflow-hidden py-8 md:py-12 font-sans relative">
@@ -54,7 +69,6 @@ const AeriousLightMarquee = () => {
           overflow: hidden;
           user-select: none;
           gap: 1rem;
-          /* Reduced skew for mobile to prevent layout breaks */
           transform: skewY(-1deg);
           padding: 0.5rem 0;
         }
@@ -120,7 +134,7 @@ const AeriousLightMarquee = () => {
 
       {/* ROW 1: FORWARD IMAGES */}
       <div className="marquee-container">
-        <div className="marquee-group" style={{ '--duration': '25s' }}>
+        <div className="marquee-group" style={{ '--duration': '40s' }}>
           {academyImages.map((src, i) => (
             <img 
               key={`a-${i}`} 
@@ -131,7 +145,7 @@ const AeriousLightMarquee = () => {
             />
           ))}
         </div>
-        <div className="marquee-group" aria-hidden="true" style={{ '--duration': '25s' }}>
+        <div className="marquee-group" aria-hidden="true" style={{ '--duration': '40s' }}>
           {academyImages.map((src, i) => (
             <img key={`a-clone-${i}`} src={src} onClick={() => setSelectedImg(src)} alt="" className="marquee-item w-40 md:w-72 aspect-[4/3] object-cover rounded-lg md:rounded-xl border border-blue-100 shadow-sm" />
           ))}
@@ -154,7 +168,7 @@ const AeriousLightMarquee = () => {
 
       {/* ROW 3: REVERSE IMAGES */}
       <div className="marquee-container marquee-reverse">
-        <div className="marquee-group" style={{ '--duration': '30s' }}>
+        <div className="marquee-group" style={{ '--duration': '50s' }}>
           {[...academyImages].reverse().map((src, i) => (
             <img 
               key={`b-${i}`} 
@@ -165,7 +179,7 @@ const AeriousLightMarquee = () => {
             />
           ))}
         </div>
-        <div className="marquee-group" aria-hidden="true" style={{ '--duration': '30s' }}>
+        <div className="marquee-group" aria-hidden="true" style={{ '--duration': '50s' }}>
           {[...academyImages].reverse().map((src, i) => (
             <img key={`b-clone-${i}`} src={src} onClick={() => setSelectedImg(src)} alt="" className="marquee-item w-40 md:w-72 aspect-[4/3] object-cover rounded-lg md:rounded-xl border border-red-100 shadow-sm" />
           ))}
@@ -185,7 +199,7 @@ const AeriousLightMarquee = () => {
                 className="absolute top-2 right-2 md:top-4 md:right-4 bg-red-600 text-white p-2 rounded-full hover:bg-blue-900 transition-colors shadow-lg"
                 aria-label="Close modal"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" md:width="24" md:height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
           </div>
         </div>

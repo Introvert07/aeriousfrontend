@@ -27,7 +27,7 @@ const Counter = ({ value, suffix = "" }) => {
 
 const AboutPage = () => {
     const stats = [
-        { label: 'Years Excellence', value: 15, suffix: '+', icon: <Award className="w-5 h-5" /> },
+        { label: 'Years Excellence', value: 35, suffix: '+', icon: <Award className="w-5 h-5" /> },
         { label: 'Certified Pilots', value: 1200, suffix: '+', icon: <Users className="w-5 h-5" /> },
         { label: 'Global Partners', value: 25, suffix: '+', icon: <Globe className="w-5 h-5" /> },
         { label: 'Flight Hours', value: 50, suffix: 'k+', icon: <Rocket className="w-5 h-5" /> },
@@ -94,7 +94,7 @@ const AboutPage = () => {
                         </h3>
                         
                         <p className="text-sm md:text-lg text-slate-500 leading-relaxed mb-6 md:mb-8 max-w-xl font-medium">
-                            Spearheaded by an <span className="text-slate-900 font-bold border-b-2 border-red-100">Indian Naval Pilot</span> with <Counter value={25} suffix="+" /> years of defense service. We bridge the gap between military-grade discipline and commercial flight excellence.
+                            Spearheaded by an <span className="text-slate-900 font-bold border-b-2 border-red-100">Indian Naval Pilot</span> with <Counter value={25} suffix="+" /> years of defense service. We bridge the gap between militarygrade discipline and commercial flight excellence.
                         </p>
 
                         <div className="group relative inline-flex items-center gap-4 md:gap-6 pl-4 md:pl-6 pr-8 md:pr-10 py-4 bg-slate-900 rounded-2xl overflow-hidden transition-all hover:bg-slate-800 shadow-xl w-full sm:w-auto">

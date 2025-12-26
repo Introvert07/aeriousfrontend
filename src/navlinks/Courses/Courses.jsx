@@ -1,15 +1,18 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Plane, ShieldCheck, GraduationCap, Navigation, Award, Compass } from 'lucide-react';
+import { ArrowRight, Plane, ShieldCheck, GraduationCap, Navigation, Award, Compass, BookOpen, Zap } from 'lucide-react';
 
 // --- IMPORT ASSETS ---
 import imgIR from '../../assets/IR-IMG.webp';
 import imgCPL from '../../assets/CPL-IMG.webp';
 import imgPPL from '../../assets/PPL-IMG.webp';
-import imgPrep from '../../assets/AEE-IMG.webp';
+import imgPrep from '../../assets/AEE-IMG.webp'; 
+import imgGround from '../../assets/new2.jpeg'; 
 import imgInstructor from '../../assets/FIC-IMG.webp';
 import imgNight from '../../assets/NR-IMG.webp';
 import headerBg from '../../assets/courseimg1.jpg';
+import typerating from '../../assets/typerating1.jpeg';
 
 const Courses = () => {
   const headerRef = useRef(null);
@@ -18,25 +21,19 @@ const Courses = () => {
     offset: ["start start", "end start"]
   });
   
-  // Header Animation Maps
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, 80]);
 
+  // Reordered according to your request (1-8)
   const courseData = [
     {
-      title: "Instrument Rating",
-      image: imgIR,
-      description: "Master the cockpit. Learn to navigate through clouds and low visibility using advanced radio and satellite systems.",
-      tag: "Advanced Ops",
-      icon: <Navigation className="text-[#e21d1d]" size={24} />,
-    },
-    {
-      title: "Commercial Pilot",
-      image: imgCPL,
-      description: "The ultimate career milestone. Command multi-engine aircraft and fly for the world's leading airline carriers.",
-      tag: "Career Professional",
-      icon: <Plane className="text-[#e21d1d]" size={24} />,
+      title: "Ground School",
+      image: imgGround, 
+      description: "Comprehensive theoretical knowledge. Prepare for DGCA exams with our expert-led classes covering Navigation, Meteorology, and Regulations.",
+      tag: "Academic Excellence",
+      icon: <BookOpen className="text-[#e21d1d]" size={24} />,
+      path: "/courses/groundschool-page"
     },
     {
       title: "Private Pilot License",
@@ -44,20 +41,7 @@ const Courses = () => {
       description: "The gateway to flight. Perfect for personal travel or as the foundational step for your professional pilot career.",
       tag: "Standard Entry",
       icon: <Compass className="text-[#e21d1d]" size={24} />,
-    },
-    {
-      title: "Airline Entrance Prep",
-      image: imgPrep,
-      description: "Bridge the gap between CPL and the Cockpit. Intense training for psychometric, technical, and simulator assessments.",
-      tag: "Success Oriented",
-      icon: <Award className="text-[#e21d1d]" size={24} />,
-    },
-    {
-      title: "Flight Instructor",
-      image: imgInstructor,
-      description: "Master the art of teaching. Develop the communication and technical skills required to train the next generation.",
-      tag: "Elite Trainer",
-      icon: <GraduationCap className="text-[#e21d1d]" size={24} />,
+      path: "/courses/private-pilot"
     },
     {
       title: "Night Rating",
@@ -65,13 +49,52 @@ const Courses = () => {
       description: "Own the night skies. Specialized training for takeoffs, landings, and navigation in nocturnal conditions.",
       tag: "Essential Skill",
       icon: <ShieldCheck className="text-[#e21d1d]" size={24} />,
+      path: "/courses/night-rating"
+    },
+    {
+      title: "Instrument Rating",
+      image: imgIR,
+      description: "Master the cockpit. Learn to navigate through clouds and low visibility using advanced radio and satellite systems.",
+      tag: "Advanced Ops",
+      icon: <Navigation className="text-[#e21d1d]" size={24} />,
+      path: "/courses/instrument-rating"
+    },
+    {
+      title: "Commercial Pilot",
+      image: imgCPL,
+      description: "The ultimate career milestone. Command multi-engine aircraft and fly for the world's leading airline carriers.",
+      tag: "Career Professional",
+      icon: <Plane className="text-[#e21d1d]" size={24} />,
+      path: "/courses/commercial-pilot"
+    },
+    {
+      title: "Flight Instructor",
+      image: imgInstructor,
+      description: "Master the art of teaching. Develop the communication and technical skills required to train the next generation.",
+      tag: "Elite Trainer",
+      icon: <GraduationCap className="text-[#e21d1d]" size={24} />,
+      path: "/courses/flight-instructor"
+    },
+    {
+      title: "Type Rating",
+      image: typerating,
+      description: "Elite A320 & B737 training at BAA Vietnam. Transition to airline cockpits with Level 'D' simulators and world-class instructors.",
+      tag: "Airline Transition",
+      icon: <Plane className="text-[#e21d1d]" size={24} />,
+      path: "/courses/type-rating"
+    },
+    {
+      title: "Airline Prep",
+      image: imgPrep, 
+      description: "Advanced training for airline entrance exams and selection processes. Master technical aptitude, psychometrics, and interview skills.",
+      tag: "Career Ready",
+      icon: <Zap className="text-[#e21d1d]" size={24} />,
+      path: "/courses/airline-prep"
     }
   ];
 
   return (
     <div className="bg-[#fcfcfc] font-sans antialiased overflow-x-hidden">
-      
-      {/* --- MODERNIZED CLASSIC HEADER --- */}
       <section ref={headerRef} className="relative h-[450px] md:h-[550px] flex items-center justify-center overflow-hidden bg-[#203a8c]">
         <motion.div 
           className="absolute inset-0 bg-cover bg-center"
@@ -81,10 +104,7 @@ const Courses = () => {
             scale
           }}
         >
-          {/* Multi-layered Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#203a8c]/80 via-[#203a8c]/40 to-[#203a8c]/95" />
-          
-          {/* Subtle Grid Pattern Overlay */}
           <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
         </motion.div>
 
@@ -114,13 +134,11 @@ const Courses = () => {
           </motion.p>
         </motion.div>
 
-        {/* Decorative Compass SVG - Hidden on small mobile to avoid clutter */}
         <div className="absolute -bottom-10 -right-10 md:-bottom-20 md:-right-20 opacity-5 md:opacity-10 text-white rotate-12 pointer-events-none">
             <Compass size={200} className="md:w-[400px] md:h-[400px]" strokeWidth={1} />
         </div>
       </section>
 
-      {/* --- RESPONSIVE GRID SECTION --- */}
       <section className="py-16 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto relative z-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
           {courseData.map((course, index) => (
@@ -142,7 +160,6 @@ const Courses = () => {
                 </div>
 
                 <div className="p-6 md:p-8 relative flex-grow flex flex-col">
-                  {/* Icon Box responsive sizing */}
                   <div className="absolute -top-6 md:-top-8 right-6 md:right-8 w-12 h-12 md:w-16 md:h-16 bg-[#203a8c] rounded-xl flex items-center justify-center shadow-xl group-hover:-translate-y-2 transition-transform duration-500 border-[3px] md:border-4 border-white">
                     {React.cloneElement(course.icon, { size: 20, className: "md:w-6 md:h-6 text-[#e21d1d]" })}
                   </div>
@@ -155,12 +172,14 @@ const Courses = () => {
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white bg-[#203a8c]" />
                         <div className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white bg-[#e21d1d]" />
                     </div>
-                    <button className="flex items-center gap-2 text-[#203a8c] font-black text-[10px] md:text-xs uppercase tracking-widest border-b-2 border-[#e21d1d] pb-1 hover:text-[#e21d1d] transition-colors">
+                    <Link 
+                      to={course.path} 
+                      className="flex items-center gap-2 text-[#203a8c] font-black text-[10px] md:text-xs uppercase tracking-widest border-b-2 border-[#e21d1d] pb-1 hover:text-[#e21d1d] transition-colors"
+                    >
                       Learn More <ArrowRight size={14} />
-                    </button>
+                    </Link>
                   </div>
                 </div>
-                {/* Underline animation */}
                 <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#e21d1d] group-hover:w-full transition-all duration-700" />
               </div>
             </motion.div>
@@ -168,7 +187,6 @@ const Courses = () => {
         </div>
       </section>
 
-      {/* Decorative Text in Background - Hidden on small screens to avoid overflow issues */}
       <div className="hidden lg:block fixed bottom-10 -left-10 text-[10rem] xl:text-[15rem] font-black text-[#203a8c]/[0.02] -z-10 select-none pointer-events-none uppercase italic">Aviation</div>
     </div>
   );

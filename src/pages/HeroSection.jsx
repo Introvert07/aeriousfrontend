@@ -15,38 +15,39 @@ const BANNER_IMAGES = [
 const HeroSection = () => {
     return (
         <div className="flex flex-col w-full bg-white">
-            {/* HERO SLIDER CONTAINER */}
-            {/* MOBILE: aspect-video (16:9) ensures the banner image is fully visible without cutting.
-                DESKTOP: md:h-[550px] gives it that premium academy feel.
-            */}
-            <main className="relative w-full aspect-video md:aspect-auto md:h-[550px] overflow-hidden bg-gray-100">
+            {/* HERO CONTAINER */}
+            <main className="relative w-full aspect-[4/3] md:aspect-auto md:h-[600px] overflow-hidden bg-gray-100">
                 <HeroSlider />
                 
-                {/* NOTIFICATION BAR - Desktop Position */}
-                <div className="hidden md:flex absolute bottom-0 w-full bg-[#e31e24] text-white items-center h-12 z-30 shadow-2xl">
+                {/* DESKTOP NOTIFICATION BAR (Hidden on Mobile) */}
+                <div className="hidden md:flex absolute bottom-0 left-0 w-full bg-[#e31e24] text-white items-center h-12 z-30 shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
+                    {/* Brand Label Box - Added mb-2 to span for alignment */}
                     <div className="bg-[#203a8c] h-full px-8 flex items-center font-black italic skew-x-[-20deg] -ml-4">
-                        <span className="skew-x-[20deg] flex items-center gap-2 tracking-tighter whitespace-nowrap text-xs">
-                            <Bell size={16} className="animate-bounce shrink-0"/> NOTIFICATIONS
+                        <span className="skew-x-[20deg] flex items-center gap-2 tracking-tighter whitespace-nowrap text-xs mb-2">
+                            <Bell size={16} className="animate-bounce shrink-0"/> 
+                            NOTIFICATIONS
                         </span>
                     </div>
+
+                    {/* Marquee Content - Added mb-2 to the marquee tag */}
                     <div className="flex-grow overflow-hidden">
-                        <marquee className="font-bold text-sm tracking-wide pt-1" scrollamount="6">
-                            Welcome to Aerius Aviators Academy • Admissions Open 2024-25 • NBA Accredited • New Flight Simulator Laboratory Launched!
+                        <marquee className="font-bold text-sm tracking-wide mb-3 pt-1" scrollamount="6">
+                            Welcome to Aerius Pilot Academy • Admissions Open 2025-26 • NBA Accredited • New Flight Simulator Laboratory Launched!
                         </marquee>
                     </div>
                 </div>
             </main>
 
-            {/* NOTIFICATION BAR - Mobile Position (Moved below slider so it doesn't cut the image) */}
-            <div className="flex md:hidden w-full bg-[#e31e24] text-white items-center h-10 z-30">
+            {/* MOBILE NOTIFICATION BAR (Separate from Banner to avoid overlap) */}
+            <div className="flex md:hidden w-full bg-[#e31e24] text-white items-center h-10 z-30 shadow-md">
                 <div className="bg-[#203a8c] h-full px-4 flex items-center font-black italic skew-x-[-15deg] -ml-2">
-                    <span className="skew-x-[15deg] flex items-center gap-1 text-[10px]">
-                        <Bell size={12} className="animate-bounce"/>
+                    <span className="skew-x-[15deg] flex items-center">
+                        <Bell size={14} className="animate-bounce shrink-0"/>
                     </span>
                 </div>
                 <div className="flex-grow overflow-hidden">
-                    <marquee className="font-bold text-[11px] pt-1" scrollamount="4">
-                        Welcome to Aerius Aviators Academy • Admissions Open 2024-25 • NBA Accredited
+                    <marquee className="font-bold text-[11px] tracking-wide pt-1" scrollamount="4">
+                        Welcome to Aerius Pilot Academy • Admissions Open 2025-26 • NBA Accredited
                     </marquee>
                 </div>
             </div>
@@ -58,7 +59,7 @@ const HeroSection = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-2xl md:text-5xl font-['Montserrat',sans-serif] font-black text-slate-800 uppercase tracking-tight mb-4 md:mb-6"
+                        className="text-2xl md:text-5xl font-['Montserrat',sans-serif] font-black text-slate-800 uppercase tracking-tight mb-3"
                     >
                         Leading the Skies with <span className="text-[#203a8c]">Excellence</span>
                     </motion.h2>
@@ -69,7 +70,7 @@ const HeroSection = () => {
                         transition={{ delay: 0.2 }}
                         className="text-gray-500 text-sm md:text-lg leading-relaxed font-medium italic"
                     >
-                        "Your journey to a professional aviation career starts here with elite faculty and world-class technology."
+                        "Your journey to a professional aviation career starts here."
                     </motion.p>
                 </div>
             </section>
@@ -109,10 +110,7 @@ const HeroSlider = () => {
                         x: { type: "spring", stiffness: 120, damping: 25 }, 
                         opacity: { duration: 0.5 } 
                     }}
-                    /* object-contain on mobile: shows the WHOLE image.
-                       md:object-cover on desktop: fills the 550px height beautifully.
-                    */
-                    className="absolute inset-0 w-full h-full object-contain md:object-cover bg-gray-100"
+                    className="absolute inset-0 w-full h-full object-fill md:object-cover bg-gray-100"
                     alt={BANNER_IMAGES[imageIndex].alt}
                 />
             </AnimatePresence>
@@ -120,23 +118,25 @@ const HeroSlider = () => {
             {/* Navigation Buttons */}
             <button 
                 onClick={() => paginate(-1)} 
-                className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-40 p-2 md:p-4 rounded-full bg-black/10 text-white"
+                className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-40 p-2 text-white bg-black/10 rounded-full hover:bg-black/30"
             >
                 <ChevronLeft size={20} className="md:w-8 md:h-8" />
             </button>
             <button 
                 onClick={() => paginate(1)} 
-                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-40 p-2 md:p-4 rounded-full bg-black/10 text-white"
+                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-40 p-2 text-white bg-black/10 rounded-full hover:bg-black/30"
             >
                 <ChevronRight size={20} className="md:w-8 md:h-8" />
             </button>
 
             {/* Indicators */}
-            <div className="absolute bottom-4 md:bottom-16 left-1/2 -translate-x-1/2 flex gap-2 z-40">
+            <div className="absolute bottom-6 md:bottom-20 left-1/2 -translate-x-1/2 flex gap-1.5 z-40">
                 {BANNER_IMAGES.map((_, idx) => (
                     <div 
                         key={idx}
-                        className={`h-1 md:h-1.5 transition-all duration-300 rounded-full ${idx === imageIndex ? 'w-8 bg-[#203a8c]' : 'w-2 bg-gray-300'}`}
+                        className={`transition-all duration-300 rounded-full shadow-sm ${
+                            idx === imageIndex ? 'w-2.5 h-2.5 bg-white' : 'w-2 h-2 bg-white/40'
+                        }`}
                     />
                 ))}
             </div>

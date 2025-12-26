@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Globe, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom'; // 1. Import Link
 
 // --- ASSET IMPORTS ---
 import mainHeroImg from '../../assets/FIC-IMG.webp';
@@ -37,13 +38,50 @@ const FlyingTraining = () => {
     }
   };
 
+  // 2. Added 'path' property to match your App.js routes
   const destinations = [
-    { name: "USA", img: usaImg, subtitle: "Florida Hub", content: "Through our exclusive partnership with AirLink Flight School in Florida, Aerius Aviators offers Indian students a streamlined pathway to earning a Commercial Pilot Licence (CPL)." },
-    { name: "SPAIN", img: spainImg, subtitle: "EASA Centres", content: "Experience flying over Spain’s diverse landscapes—from golden coastlines to historic cities. Spain offers near-perfect weather with over 300 sunny days a year." },
-    { name: "AUSTRALIA", img: australiaImg, subtitle: "Melbourne Base", content: "Train at Moorabbin Airport, one of Australia's premier aviation hubs. Gain exposure to busy traffic, controlled airspace, and world-class instructors." },
-    { name: "NEW ZEALAND", img: nzImg, subtitle: "North Otago", content: "Learn to fly in a peaceful aviation setting at Oamaru Airport. Offers scenic landscapes ranging from rugged coastlines to distant mountains." },
-    { name: "PHILIPPINES", img: philippinesImg, subtitle: "Echo Air Academy", content: "Associated with Echo Air International, known for a disciplined and professional approach to pilot education in the heart of Asia." },
-    { name: "SOUTH AFRICA", img: southAfricaImg, subtitle: "Vulcan Aviation", content: "Collaborate with Vulcan Aviation for robust, industry-aligned pilot training in one of the most respected aviation environments." }
+    { 
+      name: "USA", 
+      path: "/abroad/usa",
+      img: usaImg, 
+      subtitle: "Florida Hub", 
+      content: "Through our exclusive partnership with AirLink Flight School in Florida, Aerius Aviators offers Indian students a streamlined pathway to earning a Commercial Pilot Licence (CPL)." 
+    },
+    { 
+      name: "SPAIN", 
+      path: "/abroad/spain",
+      img: spainImg, 
+      subtitle: "EASA Centres", 
+      content: "Experience flying over Spain’s diverse landscapes—from golden coastlines to historic cities. Spain offers near-perfect weather with over 300 sunny days a year." 
+    },
+    { 
+      name: "AUSTRALIA", 
+      path: "/abroad/australia",
+      img: australiaImg, 
+      subtitle: "Melbourne Base", 
+      content: "Train at Moorabbin Airport, one of Australia's premier aviation hubs. Gain exposure to busy traffic, controlled airspace, and world-class instructors." 
+    },
+    { 
+      name: "NEW ZEALAND", 
+      path: "/abroad/new-zealand",
+      img: nzImg, 
+      subtitle: "North Otago", 
+      content: "Learn to fly in a peaceful aviation setting at Oamaru Airport. Offers scenic landscapes ranging from rugged coastlines to distant mountains." 
+    },
+    { 
+      name: "PHILIPPINES", 
+      path: "/abroad/philippines",
+      img: philippinesImg, 
+      subtitle: "Echo Air Academy", 
+      content: "Associated with Echo Air International, known for a disciplined and professional approach to pilot education in the heart of Asia." 
+    },
+    { 
+      name: "SOUTH AFRICA", 
+      path: "/abroad/south-africa",
+      img: southAfricaImg, 
+      subtitle: "Vulcan Aviation", 
+      content: "Collaborate with Vulcan Aviation for robust, industry-aligned pilot training in one of the most respected aviation environments." 
+    }
   ];
 
   return (
@@ -154,43 +192,45 @@ const FlyingTraining = () => {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-12"
         >
           {destinations.map((dest, i) => (
-            <motion.div 
-              key={i}
-              variants={itemVariants}
-              className="group relative h-[450px] md:h-[550px] rounded-[2.5rem] md:rounded-[4rem] overflow-hidden cursor-pointer"
-            >
-              {/* Background Image */}
+            // 3. Wrapped with Link component
+            <Link to={dest.path} key={i}>
               <motion.div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-[1.5s] ease-out group-hover:scale-110" 
-                style={{ backgroundImage: `url(${dest.img})` }} 
-              />
-              
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e6e] via-[#1a2e6e]/30 to-transparent opacity-80 group-hover:opacity-95 transition-all duration-500" />
+                variants={itemVariants}
+                className="group relative h-[450px] md:h-[550px] rounded-[2.5rem] md:rounded-[4rem] overflow-hidden cursor-pointer"
+              >
+                {/* Background Image */}
+                <motion.div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-[1.5s] ease-out group-hover:scale-110" 
+                  style={{ backgroundImage: `url(${dest.img})` }} 
+                />
+                
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e6e] via-[#1a2e6e]/30 to-transparent opacity-80 group-hover:opacity-95 transition-all duration-500" />
 
-              {/* Arrow Button - Visible primarily on hover/desktop */}
-              <div className="absolute top-6 right-6 md:top-10 md:right-10">
-                <div className="bg-[#e21d1d] text-white p-3 md:p-5 rounded-2xl md:rounded-3xl shadow-2xl opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500">
-                  <ArrowRight size={20} className="md:w-7 md:h-7" />
+                {/* Arrow Button */}
+                <div className="absolute top-6 right-6 md:top-10 md:right-10">
+                  <div className="bg-[#e21d1d] text-white p-3 md:p-5 rounded-2xl md:rounded-3xl shadow-2xl opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500">
+                    <ArrowRight size={20} className="md:w-7 md:h-7" />
+                  </div>
                 </div>
-              </div>
 
-              {/* Main Content */}
-              <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
-                <div className="space-y-3 md:space-y-4">
-                  <h4 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter text-white leading-none">
-                    {dest.name}
-                  </h4>
-                  <div className="w-8 h-1 bg-[#e21d1d] lg:group-hover:w-full transition-all duration-700" />
-                  <p className="text-[#e21d1d] font-black uppercase text-[9px] md:text-[10px] tracking-[0.2em] md:tracking-[0.3em]">
-                    {dest.subtitle}
-                  </p>
-                  <p className="text-xs md:text-sm text-white/80 font-medium leading-relaxed lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 lg:max-h-0 lg:group-hover:max-h-40 overflow-hidden">
-                    {dest.content}
-                  </p>
+                {/* Main Content */}
+                <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
+                  <div className="space-y-3 md:space-y-4">
+                    <h4 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter text-white leading-none">
+                      {dest.name}
+                    </h4>
+                    <div className="w-8 h-1 bg-[#e21d1d] lg:group-hover:w-full transition-all duration-700" />
+                    <p className="text-[#e21d1d] font-black uppercase text-[9px] md:text-[10px] tracking-[0.2em] md:tracking-[0.3em]">
+                      {dest.subtitle}
+                    </p>
+                    <p className="text-xs md:text-sm text-white/80 font-medium leading-relaxed lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-500 lg:max-h-0 lg:group-hover:max-h-40 overflow-hidden">
+                      {dest.content}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </motion.div>
       </section>

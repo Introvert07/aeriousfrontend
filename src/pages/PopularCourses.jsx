@@ -1,38 +1,38 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom'; // Import Link for navigation
+import { Link } from 'react-router-dom';
 import { ChevronRight, Plane, Navigation, ShieldCheck, Crosshair } from 'lucide-react';
 
 const courses = [
     {
-        id: "TC-01",
-        title: "Private Pilot License",
+        id: "", // Removed TC-01
+        title: "Private Pilot Licence",
         subtitle: "PPL / SINGLE-ENGINE",
         duration: "12 WEEKS",
-        description: "A license that permits a pilot to handle & command an aircraft privately. Mastery of maneuvers and solo flight.",
+        description: "A licence that permits a pilot to handle & command an aircraft privately. Mastery of maneuvers and solo flight.",
         icon: <Navigation size={18} />,
         status: "OPEN",
-        path: "/courses/private-pilot" // Added path
+        path: "/courses/private-pilot"
     },
     {
-        id: "TC-02",
+        id: "", // Removed TC-02
         title: "Instrument Rating",
         subtitle: "IR / NAVIGATION",
         duration: "08 WEEKS",
         description: "Intensive training focused on flying solely by reference to aircraft instruments and radio navigation.",
         icon: <ShieldCheck size={18} />,
         status: "TECHNICAL",
-        path: "/courses/instrument-rating" // Added path
+        path: "/courses/instrument-rating"
     },
     {
-        id: "TC-03",
-        title: "Commercial Pilot License",
+        id: "", // Removed TC-03
+        title: "Commercial Pilot Licence",
         subtitle: "CPL / MULTI-ENGINE",
         duration: "45 WEEKS",
-        description: "Professional license allowing the holder to be compensated for their piloting services in airline operations.",
+        description: "Professional licence allowing the holder to be compensated for their piloting services in airline operations.",
         icon: <Plane size={18} />,
         status: "ACTIVE",
-        path: "/courses/commercial-pilot" // Added path
+        path: "/courses/commercial-pilot"
     }
 ];
 
@@ -55,7 +55,7 @@ const PopularCourses = () => {
                             className="h-1 bg-red-600 mb-4"
                         />
                         <span className="text-blue-600 font-black tracking-[0.4em] uppercase text-[10px] mb-2 block">
-                            Training Syllabus v2.5
+                             {/* Removed Training Syllabus v2.5 */}
                         </span>
                         <h2 className="text-5xl md:text-7xl lg:text-8xl font-[1000] uppercase tracking-tighter text-blue-950 leading-[0.8] transition-all">
                             Popular <br/>
@@ -73,10 +73,10 @@ const PopularCourses = () => {
                     </div>
                 </div>
 
-                {/* Course Grid: 1 column on mobile, 3 columns on Laptops (lg) */}
+                {/* Course Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                     {courses.map((course, i) => (
-                        <Link key={course.id} to={course.path}>
+                        <Link key={i} to={course.path}>
                             <motion.div 
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -84,14 +84,12 @@ const PopularCourses = () => {
                                 transition={{ delay: i * 0.1 }}
                                 className="group relative bg-white border border-blue-50 p-8 h-full cursor-pointer overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
                             >
-                                {/* Fast Scan Laser Effect on Hover */}
                                 <motion.div 
                                     className="absolute inset-0 bg-gradient-to-b from-transparent via-red-500/10 to-transparent h-20 w-full z-10 opacity-0 group-hover:opacity-100 pointer-events-none"
                                     animate={{ top: ['-20%', '120%'] }}
                                     transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
                                 />
 
-                                {/* Corner Decor */}
                                 <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-blue-50 group-hover:border-red-600 transition-colors duration-300" />
                                 
                                 <div className="relative z-20 flex flex-col h-full">
@@ -99,7 +97,7 @@ const PopularCourses = () => {
                                         <div className="p-3 bg-slate-50 text-blue-900 group-hover:bg-red-600 group-hover:text-white transition-all duration-300 rounded-sm">
                                             {course.icon}
                                         </div>
-                                        <span className="text-[10px] font-mono text-blue-300 font-bold">[{course.id}]</span>
+                                        {/* Removed ID Tag display */}
                                     </div>
 
                                     <h4 className="text-[10px] font-black text-red-600 uppercase tracking-widest mb-2">{course.subtitle}</h4>
@@ -128,7 +126,6 @@ const PopularCourses = () => {
                                     </div>
                                 </div>
                                 
-                                {/* Background Watermark Icon */}
                                 <div className="absolute -bottom-6 -right-6 opacity-[0.03] group-hover:opacity-[0.08] group-hover:scale-110 transition-all duration-500">
                                     <Crosshair size={120} />
                                 </div>

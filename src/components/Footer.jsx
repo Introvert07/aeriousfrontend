@@ -14,7 +14,6 @@ import {
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  // Mapped to your App.jsx routes
   const quickLinks = [
     { name: "About Us", href: "/about" },
     { name: "Our Gallery", href: "/nav-gallery" },
@@ -28,6 +27,23 @@ const Footer = () => {
     { name: "Instrument Rating", href: "/courses/instrument-rating" },
     { name: "Night Rating", href: "/courses/night-rating" },
     { name: "Flight Instructor", href: "/courses/flight-instructor" },
+  ];
+
+  // Updated social links with your URLs
+  const socialLinks = [
+    { 
+      icon: <Facebook size={20} />, 
+      href: "https://www.facebook.com/share/1DGzUEs7tr/" 
+    },
+    { 
+      icon: <Twitter size={20} />, 
+      href: "https://x.com/aeriusaviators" 
+    },
+    { 
+      icon: <Instagram size={20} />, 
+      href: "https://www.instagram.com/aeriusaviators?igsh=MXVqMHoyZDJoa3BoZQ==" 
+    },
+   
   ];
 
   return (
@@ -107,15 +123,12 @@ const Footer = () => {
               <span className="w-6 h-[2px] bg-red-600"></span> Follow Us
             </h4>
             <div className="flex gap-4 mb-8">
-              {[
-                { icon: <Facebook size={20} />, href: "#" },
-                { icon: <Twitter size={20} />, href: "#" },
-                { icon: <Instagram size={20} />, href: "#" },
-                { icon: <Linkedin size={20} />, href: "#" },
-              ].map((social, idx) => (
+              {socialLinks.map((social, idx) => (
                 <a 
                   key={idx} 
                   href={social.href} 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-xl bg-blue-900 flex items-center justify-center hover:bg-red-600 hover:-translate-y-1 transition-all shadow-lg"
                 >
                   {social.icon}
