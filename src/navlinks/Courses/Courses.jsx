@@ -36,7 +36,7 @@ const Courses = () => {
       path: "/courses/groundschool-page"
     },
     {
-      title: "Private Pilot License",
+      title: "Private Pilot Licence",
       image: imgPPL,
       description: "The gateway to flight. Perfect for personal travel or as the foundational step for your professional pilot career.",
       tag: "Standard Entry",

@@ -8,7 +8,7 @@ import {
 // --- ASSET IMPORT ---
 import courseImg from '../../assets/PPL-IMG.webp';
 
-const PrivatePilotLicense = () => {
+const PrivatePilotLICENCE = () => {
   const headerRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -23,7 +23,7 @@ const PrivatePilotLicense = () => {
 
   const faqs = [
     { 
-      q: "What is a Private Pilot License (PPL)?", 
+      q: "What is a Private Pilot LICENCE (PPL)?", 
       a: "A PPL allows you to fly an aircraft for personal, non-commercial use." 
     },
     { 
@@ -64,7 +64,7 @@ const PrivatePilotLicense = () => {
             </div>
             <h1 className="text-white text-4xl sm:text-6xl md:text-8xl font-black uppercase italic leading-[0.9] md:leading-[0.85]">
               Private Pilot <br />
-              <span className="text-transparent" style={{ WebkitTextStroke: '1px white' }}>License (PPL)</span>
+              <span className="text-transparent" style={{ WebkitTextStroke: '1px white' }}>LICENCE (PPL)</span>
             </h1>
           </motion.div>
         </div>
@@ -79,9 +79,9 @@ const PrivatePilotLicense = () => {
             
             {/* Intro Block */}
             <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-black uppercase mb-6 md:mb-8 tracking-tighter italic">Private Pilot License</h2>
+              <h2 className="text-3xl md:text-4xl font-black uppercase mb-6 md:mb-8 tracking-tighter italic">Private Pilot Licence</h2>
               <p className="text-base md:text-lg leading-relaxed text-gray-700 font-medium mb-6">
-                A Private Pilot License (PPL) allows individuals to operate an aircraft for personal use, without pay. It provides essential knowledge and skills for future pilot training, enabling flights day and night in visual conditions.
+                A Private Pilot LICENCE (PPL) allows individuals to operate an aircraft for personal use, without pay. It provides essential knowledge and skills for future pilot training, enabling flights day and night in visual conditions.
               </p>
             </div>
 
@@ -113,7 +113,7 @@ const PrivatePilotLicense = () => {
                <Compass className="absolute -bottom-10 -right-10 text-white opacity-5" size={200} />
                <h3 className="text-2xl md:text-3xl font-black uppercase mb-4 italic text-[#e21d1d]">Course Details</h3>
                <p className="mb-8 opacity-90 leading-relaxed font-medium text-sm md:text-base">
-                To obtain a PPL License, candidates must pass DGCA PPL exams in the following subjects:
+                To obtain a PPL Licence, candidates must pass DGCA PPL exams in the following subjects:
                </p>
                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {["Air Regulations", "Aviation Meteorology", "Air Navigation", "Technical General", "Technical Specific"].map((sub, i) => (
@@ -129,7 +129,7 @@ const PrivatePilotLicense = () => {
                <h3 className="text-2xl md:text-3xl font-black uppercase italic tracking-tighter">Key Features</h3>
                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
-                    { title: "Personal Use", desc: "Earn the basic pilot license certification (FAA/ICAO PPL).", icon: <Award className="text-[#e21d1d]" /> },
+                    { title: "Personal Use", desc: "Earn the basic pilot LICENCE certification (FAA/ICAO PPL).", icon: <Award className="text-[#e21d1d]" /> },
                     { title: "Fun & Leisure", desc: "PPL holder can fly solo for fun and leisure.", icon: <PlaneTakeoff className="text-[#e21d1d]" /> },
                     { title: "Short-Term", desc: "Requires 40-50 hours of flying experience.", icon: <Clock className="text-[#e21d1d]" /> },
                     { title: "Advanced Path", desc: "Opportunity to advance to CPL and ATPL programs.", icon: <Navigation className="text-[#e21d1d]" /> }
@@ -225,4 +225,4 @@ const PrivatePilotLicense = () => {
   );
 };
 
-export default PrivatePilotLicense;
+export default PrivatePilotLICENCE;

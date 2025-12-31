@@ -28,17 +28,20 @@ const ContactPage = () => {
       if (response.ok) {
         setIsSuccess(true);
         form.current.reset();
-        setTimeout(() => setIsSuccess(false), 5000); // Reset success state after 5s
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else if (response.status === 429) {
+        // Handle Rate Limit specifically
+        alert("Too many requests. Please wait 15 minutes.");
       } else {
-        alert("Transmission Failed");
+        const errorData = await response.json();
+        alert(errorData.errors ? "Invalid input data." : "Transmission Failed");
       }
     } catch (error) {
-      alert("Connection Error");
+      alert("Connection Error: Server might be down.");
     } finally {
       setIsSending(false);
     }
   };
-
   // Animation Variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },

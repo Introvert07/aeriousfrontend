@@ -21,9 +21,9 @@ import AboutusPage from './navlinks/AboutusPage';
 import Courses from './navlinks/Courses/Courses';
 
 import InstrumentRating from './navlinks/Courses/InstrumentRating';
-import PrivatePilotLicense from './navlinks/Courses/PrivatePilotLicense';
+import PrivatePilotLICENCE from './navlinks/Courses/PrivatePilotLicense';
 import NightRating from './navlinks/Courses/NightRating';
-import CommercialPilotLicense from './navlinks/Courses/CommercialPilotLicense';
+import CommercialPilotLICENCE from './navlinks/Courses/CommercialPilotLicense';
 import FlightInstructorCourse from './navlinks/Courses/FlightInstructorCourse';
 import FlyingTrainingAbroad from './navlinks/Courses/FlyingTrainingAbroad';
 import NavGallery from './navlinks/NavGallery';
@@ -87,9 +87,9 @@ function App() {
           {/* COURSE PAGES */}
           <Route path="/courses/groundschool-page" element={<GroundSchoolPage/>} />
           <Route path="/courses/instrument-rating" element={<InstrumentRating />} />
-          <Route path="/courses/private-pilot" element={<PrivatePilotLicense />} />
+          <Route path="/courses/private-pilot" element={<PrivatePilotLICENCE />} />
           <Route path="/courses/night-rating" element={<NightRating />} />
-          <Route path="/courses/commercial-pilot" element={<CommercialPilotLicense />} />
+          <Route path="/courses/commercial-pilot" element={<CommercialPilotLICENCE />} />
           <Route path="/courses/flight-instructor" element={<FlightInstructorCourse />} />
           <Route path="/courses/airline-prep" element={<AirlinePrepPage />} /> 
           <Route path="/courses/type-rating" element={<TypeRatingPage />} /> {/* <--- NEW ROUTE */}

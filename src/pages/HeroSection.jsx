@@ -32,7 +32,7 @@ const HeroSection = () => {
                     {/* Marquee Content - Added mb-2 to the marquee tag */}
                     <div className="flex-grow overflow-hidden">
                         <marquee className="font-bold text-sm tracking-wide mb-3 pt-1" scrollamount="6">
-                            Welcome to Aerius Pilot Academy • Admissions Open 2025-26 • NBA Accredited • New Flight Simulator Laboratory Launched!
+                           "Your wings already exist, all you have to do is fly • Welcome to Aerius Pilot Academy • Admissions Open 2026-27 • The sky is not the limit, it’s your playground •"
                         </marquee>
                     </div>
                 </div>

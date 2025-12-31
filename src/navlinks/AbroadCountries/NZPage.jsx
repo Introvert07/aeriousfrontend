@@ -7,6 +7,9 @@ import heroImg from '../../assets/nz-flight.jpg';
 import nz from '../../assets/nzimg/nz.jpg'; 
 import nz2 from '../../assets/nzimg/nz2.jpg';
 import nz3 from '../../assets/nzimg/nz3.jpg';
+// Added new assets
+import nz4 from '../../assets/nzimg/nz4.jpeg'; 
+import nz5 from '../../assets/nzimg/nz5.jpeg';
 
 const NZPage = () => {
   const [selectedImg, setSelectedImg] = useState(null);
@@ -14,7 +17,8 @@ const NZPage = () => {
   const { scrollYProgress } = useScroll({ target: headerRef, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
-  const galleryImages = [nz, nz2, nz3];
+  // Updated array to include all 5 images
+  const galleryImages = [nz, nz2, nz3, nz4, nz5];
 
   return (
     <div className="bg-[#fcfcfc] font-sans text-[#1a2e6e] antialiased">
@@ -93,9 +97,9 @@ const NZPage = () => {
               </p>
             </div>
 
-            {/* --- DYNAMIC GRID (3 Images) --- */}
+            {/* --- DYNAMIC GRID (Now showing 5 images) --- */}
             <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-              {/* First image spans full width in the 2-column grid for visual balance */}
+              {/* Highlight Image (Full Width) */}
               <motion.div
                 layoutId={galleryImages[0]}
                 onClick={() => setSelectedImg(galleryImages[0])}
@@ -109,7 +113,7 @@ const NZPage = () => {
                 </div>
               </motion.div>
 
-              {/* Remaining two images */}
+              {/* Smaller Grid Images (nz2, nz3, nz4, nz5) */}
               {galleryImages.slice(1).map((img, index) => (
                 <motion.div
                   key={index}

@@ -28,7 +28,7 @@ const FlightInstructorCourse = () => {
     },
     { 
       q: "What are the prerequisites for enrolling in a Flight Instructor Course?", 
-      a: "You must hold a Commercial Pilot License (CPL) and typically have a minimum number of flight hours, often around 250 hours." 
+      a: "You must hold a Commercial Pilot LICENCE (CPL) and typically have a minimum number of flight hours, often around 250 hours." 
     },
     { 
       q: "How long does the Flight Instructor Course take?", 
@@ -120,21 +120,7 @@ const FlightInstructorCourse = () => {
                  <p className="text-sm font-medium">The practical training includes a minimum of 30 hours of flight instruction, divided into two stages.</p>
                </div>
 
-               <h4 className="text-xl font-black uppercase mb-6 flex items-center gap-3 text-[#e21d1d]">
-                 Requirements for Flight Instructor Course
-               </h4>
-               <ul className="grid md:grid-cols-2 gap-4">
-                  {[
-                    "The pilot must be at least 18 years of age.",
-                    "You need to be physically fit for flying and instructing and hold a Class 1 Medical Certific",
-                    "The pilot must have at least 200 hours of flight time under IFR",
-                    "The pilot must have at least a commercial pilot license"
-                  ].map((req, i) => (
-                    <li key={i} className="flex gap-2 text-xs font-bold uppercase tracking-tight opacity-80">
-                      <Award size={16} className="shrink-0" /> {req}
-                    </li>
-                  ))}
-               </ul>
+              
             </div>
 
             {/* Program Roadmap */}
@@ -146,7 +132,7 @@ const FlightInstructorCourse = () => {
                     <h4 className="font-black uppercase text-[#1a2e6e] text-xl">Stage 1: Ground Classes in India (2-3 months)</h4>
                     <div className="mt-4 grid md:grid-cols-2 gap-x-8 gap-y-3">
                        {[
-                         "10TH And 12TH Board Verification", "Police Verification", "Class 2 Medical from DGCA Approved Medical Examiner",
+                          "Police Verification", "Class 2 Medical from DGCA Approved Medical Examiner",
                          "Computer Number from DGCA Exam Portal \"Pariksha\"", "Profile Creation on Egca (e-Governance of Civil Aviation)",
                          "Class 1 Medical at IAF Medical Centre/ DGCA Approved Civil hospital", "VISA Formalities",
                          "DGCA written Exam in Air Navigation, Meteorology and Air Regulations"

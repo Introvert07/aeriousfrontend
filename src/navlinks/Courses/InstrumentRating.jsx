@@ -26,7 +26,7 @@ const InstrumentRating = () => {
     },
     { 
       q: "What are the eligibility requirements for obtaining an IR?", 
-      a: "You must hold a Private Pilot License (PPL) or Commercial Pilot License (CPL) and have a Class II Medical certificate." 
+      a: "You must hold a Private Pilot LICENCE (PPL) or Commercial Pilot LICENCE (CPL) and have a Class II Medical certificate." 
     },
     { 
       q: "How many flight hours are required for an Instrument Rating?", 
@@ -79,7 +79,7 @@ const InstrumentRating = () => {
             <div className="relative">
               <h2 className="text-3xl md:text-4xl font-black uppercase mb-6 md:mb-8 tracking-tighter italic">Instrument Rating</h2>
               <p className="text-base md:text-lg leading-relaxed text-gray-700 font-medium mb-4 md:mb-6">
-                An Instrument Rating (IR) is a qualification obtained through comprehensive training focused on flying using only aircraft instruments. It is one of the most valuable additions to your pilot license.
+                An Instrument Rating (IR) is a qualification obtained through comprehensive training focused on flying using only aircraft instruments. It is one of the most valuable additions to your pilot licence.
               </p>
               
               <p className="text-sm md:text-base text-gray-600 leading-relaxed">
@@ -125,7 +125,7 @@ const InstrumentRating = () => {
                 <h4 className="text-lg md:text-xl font-black text-[#1a2e6e] mb-2 uppercase">Stage 1: Ground Classes (2-3 months)</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 mt-4">
                   {[
-                    "10th & 12th Verification", "Police Verification", "Class 2 Medical",
+                     "Police Verification", "Class 2 Medical",
                     "Computer Number (Pariksha)", "Profile Creation on EGCA",
                     "Class 1 Medical", "VISA Formalities", "DGCA Written Exams"
                   ].map((task, i) => (
@@ -140,7 +140,7 @@ const InstrumentRating = () => {
               <div className="relative pl-6 md:pl-8 border-l-2 border-gray-200">
                 <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#1a2e6e]" />
                 <h4 className="text-lg md:text-xl font-black text-[#1a2e6e] mb-2 uppercase">Stage 2: Flying Training (12-15 months)</h4>
-                <p className="text-xs md:text-sm text-gray-500">Global training centers in US, Spain, Australia, & more. Includes Foreign CPL and Radio License.</p>
+                <p className="text-xs md:text-sm text-gray-500">Global training centers in US, Spain, Australia, & more. Includes Foreign CPL and Radio Licence.</p>
               </div>
             </div>
           </div>

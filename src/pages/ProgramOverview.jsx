@@ -30,7 +30,7 @@ const stages = [
         description: "Gain hands-on flight experience across international hubs and master the cockpit.",
         tasks: [
             "Training: USA, Spain, Australia", "Training: NZ, Philippines, SA",
-            "Issue of Foreign CPL", "Radio License Issuance",
+            "Issue of Foreign CPL", "Radio LICENCE Issuance",
             "ELP Certificate Level 4"
         ],
         icon: <Globe className="text-blue-600" size={20} />,
@@ -38,10 +38,10 @@ const stages = [
     {
         number: "03",
         stepText: "Step 03",
-        title: "License Conversion",
+        title: "LICENCE Conversion",
         location: "Base: India",
         duration: "1-2 Months",
-        description: "Validate your international experience and secure your Indian Commercial Pilot License.",
+        description: "Validate your international experience and secure your Indian Commercial Pilot Licence.",
         tasks: [
             "Flight Tests (DGCA FTO)", "Document Compilation",
             "Paperwork Submission", "Issue of Indian CPL"

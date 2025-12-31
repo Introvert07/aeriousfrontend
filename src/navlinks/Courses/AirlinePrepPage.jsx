@@ -21,11 +21,11 @@ const AirlinePrepPage = () => {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   const courseFeatures = [
-    { title: "Aviation Regulations", desc: "Laws governing global and local aviation practices." },
+    { title: "JEPPESEN CHARTS", desc: "Jeppesen Charts is a cornerstone of modern aviation navigation." },
     { title: "Aerodynamics", desc: "Principles that enable flight and optimize performance." },
     { title: "Navigation", desc: "Techniques for effective flight planning and modern aids." },
     { title: "Meteorology", desc: "Weather analysis and its impact on flight safety." },
-    { title: "Aircraft Systems", desc: "In-depth knowledge of complex aircraft components." },
+    { title: "JET AIRCRAFT ENGINES", desc: "In-depth knowledge of complex aircraft components." },
     { title: "Human Factors", desc: "Psychological and physiological elements of piloting." }
   ];
 
@@ -33,7 +33,7 @@ const AirlinePrepPage = () => {
     {
       title: "Stage 1: Ground Classes (2-3 Months)",
       items: [
-        "10th & 12th Board Verification",
+        
         "Police Verification & Class 2 Medical",
         "Computer Number from Pariksha Portal",
         "Profile Creation on eGCA",
@@ -46,7 +46,7 @@ const AirlinePrepPage = () => {
       items: [
         "Flying training in South Africa",
         "Issue of South African CPL",
-        "Radio License & ELP Level 4"
+        "Radio LICENCE & ELP Level 4"
       ]
     },
     {
@@ -104,25 +104,14 @@ const AirlinePrepPage = () => {
             <div>
               <h2 className="text-2xl md:text-3xl font-black uppercase mb-6 italic border-b-4 border-[#e21d1d] w-fit pb-2">Course Overview</h2>
               <p className="text-base md:text-lg leading-relaxed text-gray-600 font-medium">
-                Specifically designed for individuals seeking to excel in their Commercial Pilot License (CPL) exams. 
+                Specifically designed for individuals seeking to excel in their Commercial Pilot LICENCE (CPL) exams. 
                 This comprehensive course covers all essential aspects of aviation knowledge, providing students with 
                 the tools and confidence needed for success in airline selection processes.
               </p>
             </div>
 
             {/* Prerequisites */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                { icon: <Users />, text: "18+ Years of age for license issuance" },
-                { icon: <ShieldCheck />, text: "Must hold Class 1 Medical" },
-                { icon: <Globe />, text: "English Proficiency (Read/Write/Speak)" }
-              ].map((item, i) => (
-                <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
-                  <div className="text-[#e21d1d] mb-3">{item.icon}</div>
-                  <p className="text-xs font-bold uppercase tracking-tight">{item.text}</p>
-                </div>
-              ))}
-            </div>
+          
 
             {/* Key Features Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">

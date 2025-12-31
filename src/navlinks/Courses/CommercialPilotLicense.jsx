@@ -8,7 +8,7 @@ import {
 // --- ASSET IMPORT ---
 import cplHeaderImg from '../../assets/CPL-IMG.webp';
 
-const CommercialPilotLicense = () => {
+const CommercialPilotLICENCE = () => {
   const headerRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -21,7 +21,7 @@ const CommercialPilotLicense = () => {
 
   const faqs = [
     { 
-      q: "What is a Commercial Pilot License (CPL)?", 
+      q: "What is a Commercial Pilot LICENCE (CPL)?", 
       a: "A CPL allows you to be compensated for flying and pursue a professional career as a pilot." 
     },
     { 
@@ -62,7 +62,7 @@ const CommercialPilotLicense = () => {
             </div>
             <h1 className="text-white text-4xl sm:text-6xl md:text-8xl font-black uppercase italic leading-[0.9] md:leading-[0.85]">
               Commercial <br />
-              <span className="text-transparent" style={{ WebkitTextStroke: '1px white' }}>Pilot License</span>
+              <span className="text-transparent" style={{ WebkitTextStroke: '1px white' }}>Pilot Licence</span>
             </h1>
           </motion.div>
         </div>
@@ -77,9 +77,9 @@ const CommercialPilotLicense = () => {
             
             {/* Intro Block */}
             <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-black uppercase mb-6 md:mb-8 tracking-tighter italic">CPL (Commercial pilot license)</h2>
+              <h2 className="text-3xl md:text-4xl font-black uppercase mb-6 md:mb-8 tracking-tighter italic">CPL (Commercial pilot licence)</h2>
               <p className="text-lg md:text-xl leading-relaxed text-gray-700 font-medium border-l-4 border-[#e21d1d] pl-4 md:pl-6">
-                A Commercial Pilot License (CPL) is a professional license that permits the holder to receive payment for their piloting services. It marks a crucial step for anyone aspiring to a career in aviation.
+                A Commercial Pilot LICENCE (CPL) is a professional LICENCE that permits the holder to receive payment for their piloting services. It marks a crucial step for anyone aspiring to a career in aviation.
               </p>
             </div>
 
@@ -90,9 +90,8 @@ const CommercialPilotLicense = () => {
                 </h3>
                 <div className="space-y-3 text-xs md:text-sm font-bold text-gray-600 uppercase tracking-tight">
                 {[
-                  "Applicant must be at least 18 years of age for issuance of Commercial Pilot License",
+                  "Applicant must be at least 18 years of age for issuance of Commercial Pilot Licence",
                   "Applicant must hold a Class 1 Medical",
-                  "Medical Fitness— A certificate from an approved Medical Board.",
                   "Knowledge— Pass written examination in Air Regulations, Navigation, Meteorology and Signals.",
                   "Should be able to read, write, understand and speak English",
                   "200 hrs of flight time as pilot within a period of five years.",
@@ -226,4 +225,4 @@ const CommercialPilotLicense = () => {
   );
 };
 
-export default CommercialPilotLicense;
+export default CommercialPilotLICENCE;

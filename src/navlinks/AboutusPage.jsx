@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { Award, BookOpen, ShieldCheck, GraduationCap, PlaneTakeoff, CheckCircle2, Star, Target, Compass, Anchor, Layers, Globe, FileCheck, Rocket } from 'lucide-react';
 
 // Assets
-import founderImg from '../assets/about_img_3.webp'; 
 import heroBg from '../assets/courseimg1.jpg'; 
+import aircraftGif from '../assets/Aircraft.gif'; // Added your GIF
 
 const StatCounter = ({ value, label, icon: Icon }) => {
     const [count, setCount] = useState(0);
@@ -113,90 +113,33 @@ const AboutPage = () => {
                 </div>
             </motion.div>
 
-            {/* 3. THE BIOGRAPHY TIMELINE */}
-            <section className="py-20 md:py-32 bg-white overflow-hidden">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="flex flex-col lg:flex-row gap-12 md:gap-20">
-                        <div className="lg:w-1/3 lg:sticky lg:top-32 h-fit">
-                            <h2 className="text-sm font-black text-[#e31e24] uppercase tracking-[0.3em] mb-4">The Captain's Log</h2>
-                            <h3 className="text-4xl md:text-5xl font-black text-[#203a8c] uppercase leading-tight">A Career <br /> In Motion.</h3>
-                            
-                            <motion.div 
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                                className="mt-10 mb-10 lg:mb-0 relative group"
-                            >
-                                <div className="absolute -inset-2 bg-[#e31e24] rounded-3xl rotate-2 opacity-10 group-hover:rotate-3 transition-transform" />
-                                <img 
-                                    src={founderImg} 
-                                    alt="Capt. Saurabh Bhatnagar" 
-                                    className="relative z-10 rounded-2xl shadow-xl w-full aspect-[4/5] object-cover"
-                                />
-                            </motion.div>
-
-                            <div className="mt-6 md:mt-8 p-6 bg-slate-50 rounded-3xl border-l-4 border-[#203a8c]">
-                                <p className="text-sm text-slate-500 leading-relaxed italic">"Renowned for exemplary leadership, piloting proficiency, and unwavering commitment to aviation safety."</p>
-                            </div>
-                        </div>
-
-                        <div className="lg:w-2/3 space-y-20 md:space-y-32">
-                            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} className="relative pl-8 md:pl-12 border-l-2 border-slate-100">
-                                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#203a8c] ring-8 ring-blue-50" />
-                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">1989 — 2014</span>
-                                <h4 className="text-2xl md:text-3xl font-black text-slate-800 uppercase mt-2 mb-6 flex items-center gap-3"><Anchor className="text-[#203a8c]" size={24} /> Naval Aviation</h4>
-                                <div className="space-y-6 text-slate-600 leading-relaxed text-base md:text-lg">
-                                    <p>During his illustrious career, Captain Bhatnagar piloted a wide array of aircraft including <strong>fighters and maritime surveillance planes</strong>.</p>
-                                    <div className="grid md:grid-cols-2 gap-4">
-                                        <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                                            <p className="text-xs font-bold uppercase text-[#203a8c] mb-1">Squadron Command</p>
-                                            <p className="text-sm">Commanding Officer of the Dornier 228 squadron based in Kochi.</p>
-                                        </div>
-                                        <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                                            <p className="text-xs font-bold uppercase text-[#203a8c] mb-1">Safety Leadership</p>
-                                            <p className="text-sm">Joint Director of Aviation Safety at Naval Headquarters.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-
-                            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} className="relative pl-8 md:pl-12 border-l-2 border-slate-100">
-                                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#e31e24] ring-8 ring-red-50" />
-                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">2014 — 2024</span>
-                                <h4 className="text-2xl md:text-3xl font-black text-slate-800 uppercase mt-2 mb-6 flex items-center gap-3"><PlaneTakeoff className="text-[#e31e24]" size={24} /> Commercial Aviation</h4>
-                                <div className="space-y-6 text-slate-600 leading-relaxed text-base md:text-lg">
-                                    <p>Transitioned to Commercial Aviation joining <strong>IndiGo</strong> and later <strong>Air India Express</strong> as Senior Commander.</p>
-                                    <p className="text-sm bg-[#203a8c] text-white p-6 rounded-[2rem] shadow-xl relative overflow-hidden">
-                                        Retired with a cumulative flight experience exceeding 9000 hours.
-                                        <PlaneTakeoff className="absolute -right-4 -bottom-4 opacity-10 rotate-12" size={80} />
-                                    </p>
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             {/* 4. ABOUT AERIUS ECOSYSTEM SECTION */}
-            <section className="py-20 md:py-32 bg-slate-50">
-                <div className="max-w-7xl mx-auto px-6">
+            <section className="py-20 md:py-32 bg-slate-50 relative overflow-hidden">
+                {/* GIF ADDED HERE AS A BACKGROUND DECORATION */}
+                <img 
+                    src={aircraftGif} 
+                    alt="Decor" 
+                    className="absolute top-0 right-0 w-1/3 opacity-[0.03] pointer-events-none grayscale"
+                />
+
+                <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
-                        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                        <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
                             <h2 className="text-sm font-black text-[#e31e24] uppercase tracking-[0.3em] mb-4">About Aerius Pilot Academy</h2>
                             <h3 className="text-4xl md:text-6xl font-black text-[#203a8c] uppercase leading-tight mb-8">
-                                The Complete Ecosystem <br /> <span className="text-red-600">for Aviators</span>
+                                The Complete Ecosystem <br /> <span className="text-red-600">for Aspiring Commercial Pilots</span>
                             </h3>
                             <p className="text-lg text-slate-600 leading-relaxed mb-6">
                                 At Aerius Pilot Academy (a subsidiary of Aerius Aviators LLP), we don’t just train students; <strong>we mentor future captains</strong>. 
                             </p>
-                            <p className="text-slate-500 leading-relaxed">
+                            <p className="text-slate-500 leading-relaxed italic border-l-4 border-red-600 pl-4">
                                 We understand that the journey from an aspiring aviator to a Type-Rated Commercial Pilot is complex and demanding. That is why we have built a seamless, end-to-end training ecosystem designed to handle every hurdle a student faces.
                             </p>
                         </motion.div>
+                        
                         <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="bg-[#203a8c] p-8 md:p-12 rounded-[3rem] text-white shadow-2xl relative overflow-hidden">
                             <Rocket className="absolute -right-10 -top-10 text-white/10" size={240} />
-                            <h4 className="text-2xl font-black uppercase mb-6">Why Choose Us?</h4>
+                            <h4 className="text-2xl font-black uppercase mb-6">Why Choose Aerius Pilot Academy?</h4>
                             <p className="text-blue-100/80 mb-8 leading-relaxed">As India’s Premier CPL & Type Rating Hub, we pride ourselves on transparency, safety, and results.</p>
                             <ul className="space-y-4">
                                 {[
@@ -220,9 +163,9 @@ const AboutPage = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                         {[
-                            { step: "01", icon: BookOpen, title: "Foundation Excellence", desc: "Intensive Ground Classes for DGCA exams with deep conceptual clarity." },
+                            { step: "01", icon: BookOpen, title: "Foundation Excellence", desc: "Intensive Ground Classes in India for DGCA exams with deep conceptual clarity." },
                             { step: "02", icon: Globe, title: "Global Training", desc: "World-class Flying Training abroad for international exposure." },
-                            { step: "03", icon: Layers, title: "Seamless Conversion", desc: "Managing License Conversion flying in India after your return." },
+                            { step: "03", icon: Layers, title: "Seamless Conversion", desc: "Managing Licence Conversion flying in India after your return." },
                             { step: "04", icon: FileCheck, title: "Regulatory Support", desc: "Handling complex DGCA documentation so you focus on flying." },
                             { step: "05", icon: GraduationCap, title: "Advanced Specialization", desc: "Type Rating & Airline Prep to make you airline-ready." }
                         ].map((item, idx) => (
@@ -233,30 +176,6 @@ const AboutPage = () => {
                                 </div>
                                 <h5 className="font-black text-[#203a8c] uppercase text-sm mb-4 leading-tight">{item.title}</h5>
                                 <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* 5. TECHNICAL CREDENTIALS */}
-            <section className="py-20 md:py-24 bg-slate-900 text-white relative overflow-hidden">
-                <div className="max-w-7xl mx-auto px-6 relative z-10">
-                    <div className="mb-12 md:mb-16">
-                        <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter">Technical Credentials</h2>
-                        <p className="text-blue-400 mt-2 font-mono uppercase tracking-[0.3em] text-xs md:text-sm">ATPL No: 2637 | Since Dec 2002</p>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            { title: "PIC Ratings", desc: "A-320, P-68 C", icon: Compass },
-                            { title: "Co-Pilot", desc: "Do-228 Aircraft", icon: Target },
-                            { title: "Instrument", desc: "Open Instrument Rating", icon: ShieldCheck },
-                            { title: "Flight Hours", desc: "9,000+ Multi-Engine", icon: PlaneTakeoff }
-                        ].map((item, idx) => (
-                            <motion.div key={idx} whileHover={{ y: -10 }} className="p-8 bg-white/5 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-all">
-                                <item.icon className="text-[#e31e24] mb-4" size={32} />
-                                <h5 className="font-black uppercase text-sm mb-2">{item.title}</h5>
-                                <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -283,8 +202,9 @@ const AboutPage = () => {
                         </div>
                     </motion.div>
                 </div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.02] pointer-events-none">
-                    <h2 className="text-[25vw] font-black text-[#203a8c]">AERIUS</h2>
+                {/* ALTERNATE PLACEMENT FOR GIF (SUBTLE OVERLAY) */}
+                <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
+                    <img src={aircraftGif} className="w-full h-full object-cover grayscale" alt="" />
                 </div>
             </section>
 

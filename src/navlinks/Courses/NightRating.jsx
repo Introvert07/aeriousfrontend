@@ -25,7 +25,7 @@ const NightRating = () => {
     },
     { 
       q: "What are the eligibility requirements for obtaining a Night Rating?", 
-      a: "You must hold at least a Private Pilot License (PPL) and meet specific flight time requirements, usually including a minimum number of daytime flight hours." 
+      a: "You must hold at least a Private Pilot LICENCE (PPL) and meet specific flight time requirements, usually including a minimum number of daytime flight hours." 
     },
     { 
       q: "How many flight hours are required for a Night Rating?", 
@@ -81,7 +81,7 @@ const NightRating = () => {
                 A Night Rating enables you to fly and carry passengers after dark.
               </p>
               <p className="text-base md:text-lg leading-relaxed text-gray-700 font-medium">
-                Some of the most enjoyable and relaxing flying experiences occur once the sun sets. Earning a Night Rating is an excellent way to build on the skills you gained while obtaining your Private License.
+                Some of the most enjoyable and relaxing flying experiences occur once the sun sets. Earning a Night Rating is an excellent way to build on the skills you gained while obtaining your Private Licence.
               </p>
             </div>
 
@@ -92,6 +92,7 @@ const NightRating = () => {
                </h3>
                <div className="space-y-3 md:space-y-4">
                 {[
+                  "Applicant must hold PPL",
                   "Applicant must be at least 18 years of age",
                   "Applicant must hold a Class 1 Medical",
                   "English proficiency (Read, Write, Speak)"
