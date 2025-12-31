@@ -14,7 +14,7 @@ const stages = [
         duration: "2-3 Months",
         description: "Master aeronautical knowledge and regulatory requirements. This is your theoretical foundation.",
         tasks: [
-            "10th & 12th Board Verification", "Police Verification (PCC)",
+             "Police Verification (PCC)",
             "Class 2 Medical (DGCA)", "DGCA Computer Number",
             "EGCA Profile Creation", "Class 1 Medical (IAF/Civil)",
             "VISA Formalities", "DGCA Written Exams"
