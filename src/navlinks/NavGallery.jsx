@@ -6,6 +6,9 @@ import { ChevronLeft, ChevronRight, Play, Youtube, Instagram, X, Camera, Video }
 import storyThumbnail from '../assets/courseimg1.jpg'; 
 import video1 from '../assets/video1.mp4';
 import video2 from '../assets/video2.mp4';
+import video3 from '../assets/video3.mp4';
+import video4 from '../assets/video4.mp4';
+
 
 // 1. ASSET CONFIGURATION
 const existingPhotos = Array.from({ length: 18 }, (_, i) => ({
@@ -25,8 +28,10 @@ const newPhotos = Array.from({ length: 8 }, (_, i) => ({
 const photos = [...newPhotos, ...existingPhotos];
 
 const localVideos = [
-  { id: 'lv1', type: 'local_video', title: 'Training Session Alpha', src: video1 },
-  { id: 'lv2', type: 'local_video', title: 'Cockpit View Bravo', src: video2 },
+  { id: 'lv1', type: 'local_video', src: video1 },
+  { id: 'lv2', type: 'local_video', src: video2 },
+    { id: 'lv3', type: 'local_video',  src: video3 },
+      { id: 'lv4', type: 'local_video',  src: video4 },
 ];
 
 const youtubeVideos = [
@@ -151,20 +156,43 @@ const AeriusGallery = () => {
       </div>
 
       {/* 3. IG REELS */}
-      <div className="max-w-6xl mx-auto mb-12 md:mb-24">
-        <div className="flex items-center gap-3 mb-6 border-b border-slate-200 pb-4">
-          <div className="p-2 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-lg text-white"><Instagram size={18} /></div>
-          <h2 className="text-lg md:text-xl font-black text-[#1a2e6e] uppercase italic tracking-wider">Pilot Stories</h2>
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
-          {igReels.map((reel) => (
-            <div key={reel.id} onClick={() => setSelectedMedia(reel)} className="aspect-[9/16] bg-slate-900 rounded-[1rem] md:rounded-[2rem] cursor-pointer relative overflow-hidden group border-2 border-white shadow-lg">
-              <img src={storyThumbnail} className="absolute inset-0 w-full h-full object-cover opacity-80" alt="Reel Thumbnail" loading="lazy" />
-              <div className="absolute inset-0 flex items-center justify-center"><Play className="text-white opacity-50" /></div>
-            </div>
-          ))}
+      {/* 3. IG REELS */}
+<div className="max-w-6xl mx-auto mb-12 md:mb-24">
+  <div className="flex items-center gap-3 mb-6 border-b border-slate-200 pb-4">
+    <div className="p-2 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-lg text-white">
+      <Instagram size={18} />
+    </div>
+    <h2 className="text-lg md:text-xl font-black text-[#1a2e6e] uppercase italic tracking-wider">
+      Pilot Stories
+    </h2>
+  </div>
+  
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+    {igReels.map((reel) => (
+      <div 
+        key={reel.id} 
+        onClick={() => setSelectedMedia(reel)} 
+        className="aspect-[9/16] bg-slate-900 rounded-[1rem] md:rounded-[2rem] cursor-pointer relative overflow-hidden group border-2 border-white shadow-lg"
+      >
+        {/* DIRECT EMBED INSTEAD OF THUMBNAIL */}
+        <iframe 
+          className="w-full h-full pointer-events-none" // pointer-events-none allows the click to bubble up to the parent div
+          src={`https://www.instagram.com/reel/${reel.reelId}/embed/`} 
+          scrolling="no" 
+          frameBorder="0"
+          title="Instagram Reel Preview"
+        />
+        
+        {/* Overlay to maintain clickability and show play icon on hover */}
+        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors flex items-center justify-center">
+          <div className="p-3 rounded-full bg-white/20 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+            <Play className="text-white fill-white" size={24} />
+          </div>
         </div>
       </div>
+    ))}
+  </div>
+</div>
 
       {/* 4. YOUTUBE ROW */}
       <div className="max-w-6xl mx-auto mb-12 md:mb-24">
