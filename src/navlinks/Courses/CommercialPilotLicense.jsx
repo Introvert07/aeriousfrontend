@@ -93,7 +93,7 @@ const CommercialPilotLICENCE = () => {
                   "Applicant must be at least 18 years of age for issuance of Commercial Pilot Licence",
                   "Applicant must hold a Class 1 Medical",
                   "Knowledge— Pass written examination in Air Regulations, Navigation, Meteorology and Signals.",
-                  "Should be able to read, write, understand and speak English",
+                  "Should be able to read, write, understand and speak English (ELP-4)",
                   "200 hrs of flight time as pilot within a period of five years.",
                   "Skill— Competency to perform manoeuvres within six months of application."
                 ].map((item, i) => (

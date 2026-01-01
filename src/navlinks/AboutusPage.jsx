@@ -163,11 +163,11 @@ const AboutPage = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                         {[
-                            { step: "01", icon: BookOpen, title: "Foundation Excellence", desc: "Intensive Ground Classes in India for DGCA exams with deep conceptual clarity." },
-                            { step: "02", icon: Globe, title: "Global Training", desc: "World-class Flying Training abroad for international exposure." },
-                            { step: "03", icon: Layers, title: "Seamless Conversion", desc: "Managing Licence Conversion flying in India after your return." },
-                            { step: "04", icon: FileCheck, title: "Regulatory Support", desc: "Handling complex DGCA documentation so you focus on flying." },
-                            { step: "05", icon: GraduationCap, title: "Advanced Specialization", desc: "Type Rating & Airline Prep to make you airline-ready." }
+                            { step: "01", icon: BookOpen, title: "Foundation Excellence", desc: "Our intensive Ground Classes in India prepare students for the rigorous DGCA examinations with a focus on deep conceptual clarity." },
+                            { step: "02", icon: Globe, title: "Global Training", desc: "We facilitate world-class Flying Training abroad, ensuring our cadets gain international exposure and superior stick-and-rudder skills." },
+                            { step: "03", icon: Layers, title: "Seamless Conversion", desc: "Upon returning, we manage the Licence Conversion flying in India, guiding students through the technicalities of transitioning their international experience to Indian skies." },
+                            { step: "04", icon: FileCheck, title: "Regulatory Support", desc: "From initial paperwork to the final issue of the DGCA Licence, our expert team handles the complex documentation, so our students can focus on flying." },
+                            { step: "05", icon: GraduationCap, title: "Advanced Specialization", desc: "We provide industry-standard Type Rating on A320 and B737 aircraft, followed by dedicated Airline Prep classes to ensure our graduates are airline-ready from day one." }
                         ].map((item, idx) => (
                             <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} whileHover={{ y: -10 }} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col items-center text-center">
                                 <span className="text-4xl font-black text-slate-100 mb-4">{item.step}</span>
