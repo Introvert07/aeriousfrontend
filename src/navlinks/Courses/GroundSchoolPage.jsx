@@ -2,16 +2,44 @@ import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
   BookOpen, Globe, Award, CheckCircle, Send, 
-  ChevronDown, ShieldCheck, Map, Compass, Zap ,GraduationCap // <--- Added this to the import
+  ChevronDown, ShieldCheck, Map, Compass, Zap ,GraduationCap 
 } from 'lucide-react';
 
 // --- ASSET IMPORT ---
-// Replace with your actual ground school related image
 import groundSchoolHero from '../../assets/new4.jpeg'; 
 
 const GroundSchoolPage = () => {
   const headerRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(null);
+
+  // --- FORM STATE ---
+  const [formData, setFormData] = useState({
+    fullName: '',
+    course: 'Select Course (e.g. DGCA, EASA)',
+    phone: '',
+    requirements: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    const recipient = "director@aeriuspilotacademy.com";
+    const subject = encodeURIComponent(`Ground School Enrollment - ${formData.fullName}`);
+    const body = encodeURIComponent(
+      `Full Name: ${formData.fullName}\n` +
+      `Course: ${formData.course}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Specific Requirements: ${formData.requirements}`
+    );
+
+    // Redirect to default mail client as a draft
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  };
 
   // Parallax Logic
   const { scrollYProgress } = useScroll({
@@ -157,18 +185,46 @@ const GroundSchoolPage = () => {
                 <h3 className="text-2xl font-black uppercase italic tracking-tighter">Enroll in Theory</h3>
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-2">Start Your Academic Journey</p>
               </div>
-              <form className="space-y-4">
-                <input type="text" placeholder="Full Name" className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <select className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm text-gray-500 font-bold">
-                  <option>Select Course (e.g. DGCA, EASA)</option>
-                  <option>DGCA - India</option>
-                  <option>EASA - Europe</option>
-                  <option>FAA - USA</option>
-                  <option>Other</option>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <input 
+                  type="text" 
+                  name="fullName"
+                  required
+                  placeholder="Full Name" 
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" 
+                />
+                <select 
+                  name="course"
+                  value={formData.course}
+                  onChange={handleInputChange}
+                  className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm text-gray-500 font-bold"
+                >
+                  <option disabled>Select Course (e.g. DGCA, EASA)</option>
+                  <option value="DGCA - India">DGCA - India</option>
+                  <option value="EASA - Europe">EASA - Europe</option>
+                  <option value="FAA - USA">FAA - USA</option>
+                  <option value="Other">Other</option>
                 </select>
-                <input type="tel" placeholder="Phone Number" className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <textarea placeholder="Any specific requirements?" rows="4" className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm"></textarea>
-                <button className="w-full bg-[#1a2e6e] text-white font-black py-5 rounded-2xl uppercase tracking-widest hover:bg-[#e21d1d] transition-colors flex items-center justify-center gap-3">
+                <input 
+                  type="tel" 
+                  name="phone"
+                  required
+                  placeholder="Phone Number" 
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" 
+                />
+                <textarea 
+                  name="requirements"
+                  placeholder="Any specific requirements?" 
+                  rows="4" 
+                  value={formData.requirements}
+                  onChange={handleInputChange}
+                  className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm"
+                ></textarea>
+                <button type="submit" className="w-full bg-[#1a2e6e] text-white font-black py-5 rounded-2xl uppercase tracking-widest hover:bg-[#e21d1d] transition-colors flex items-center justify-center gap-3">
                   Get Syllabus <Send size={18} />
                 </button>
               </form>

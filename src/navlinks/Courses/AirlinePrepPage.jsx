@@ -13,6 +13,39 @@ const AirlinePrepPage = () => {
   const headerRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(null);
 
+  // --- FORM STATE ---
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const recipient = "director@aeriuspilotacademy.com";
+    const subject = encodeURIComponent(`Airline Entrance Prep Inquiry - ${formData.name}`);
+    
+    const body = encodeURIComponent(
+      `Dear Admissions Team,\n\n` +
+      `I would like to inquire about the Airline Entrance Preparation course.\n\n` +
+      `--- CANDIDATE INFORMATION ---\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Message: ${formData.message}\n\n` +
+      `Please provide information regarding the next batch and study materials.`
+    );
+
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  };
+
   const { scrollYProgress } = useScroll({
     target: headerRef,
     offset: ["start start", "end start"]
@@ -33,7 +66,6 @@ const AirlinePrepPage = () => {
     {
       title: "Stage 1: Ground Classes (2-3 Months)",
       items: [
-        
         "Police Verification & Class 2 Medical",
         "Computer Number from Pariksha Portal",
         "Profile Creation on eGCA",
@@ -68,17 +100,16 @@ const AirlinePrepPage = () => {
   return (
     <div className="bg-[#fcfcfc] font-sans text-[#1a2e6e] antialiased">
       
-      {/* --- HERO SECTION (Updated for Responsiveness) --- */}
+      {/* --- HERO SECTION --- */}
       <section ref={headerRef} className="relative h-[50vh] md:h-[65vh] flex items-center overflow-hidden bg-[#1a2e6e]">
         <motion.div 
           className="absolute inset-0 bg-cover bg-center md:bg-right-top no-repeat"
           style={{ 
             backgroundImage: `url(${airlineHero})`, 
             y,
-            backgroundSize: 'cover' // Ensures image covers the area
+            backgroundSize: 'cover'
           }}
         >
-          {/* Gradient Overlay: Adjusted to be more aggressive on mobile for text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e6e] via-[#1a2e6e]/60 to-[#1a2e6e]/20 md:bg-gradient-to-r md:from-[#1a2e6e] md:via-[#1a2e6e]/40 md:to-transparent" />
         </motion.div>
 
@@ -109,9 +140,6 @@ const AirlinePrepPage = () => {
                 the tools and confidence needed for success in airline selection processes.
               </p>
             </div>
-
-            {/* Prerequisites */}
-          
 
             {/* Key Features Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -176,7 +204,7 @@ const AirlinePrepPage = () => {
             </div>
           </div>
 
-          {/* --- SIDEBAR FORM (Hidden/Visible Adjustments) --- */}
+          {/* --- SIDEBAR FORM --- */}
           <div className="lg:col-span-4">
             <div className="sticky top-10 bg-white p-6 md:p-8 rounded-[1.5rem] md:rounded-[2.5rem] shadow-2xl border-t-8 border-[#e21d1d]">
               <div className="text-center mb-6 md:mb-8">
@@ -184,11 +212,43 @@ const AirlinePrepPage = () => {
                 <h3 className="text-xl md:text-2xl font-black uppercase italic tracking-tighter">Application</h3>
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-2">Secure Your Future</p>
               </div>
-              <form className="space-y-4">
-                <input type="text" placeholder="Name" className="w-full p-4 bg-gray-50 rounded-xl md:rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <input type="email" placeholder="Email" className="w-full p-4 bg-gray-50 rounded-xl md:rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <input type="tel" placeholder="Phone Number" className="w-full p-4 bg-gray-50 rounded-xl md:rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <textarea placeholder="Message" rows="4" className="w-full p-4 bg-gray-50 rounded-xl md:rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm"></textarea>
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <input 
+                  type="text" 
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Name" 
+                  className="w-full p-4 bg-gray-50 rounded-xl md:rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <input 
+                  type="email" 
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Email" 
+                  className="w-full p-4 bg-gray-50 rounded-xl md:rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <input 
+                  type="tel" 
+                  name="phone"
+                  required
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Phone Number" 
+                  className="w-full p-4 bg-gray-50 rounded-xl md:rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <textarea 
+                  name="message"
+                  required
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Message" 
+                  rows="4" 
+                  className="w-full p-4 bg-gray-50 rounded-xl md:rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e] resize-none"
+                ></textarea>
                 <button type="submit" className="w-full bg-[#1a2e6e] text-white font-black py-4 md:py-5 rounded-xl md:rounded-2xl uppercase tracking-widest hover:bg-[#e21d1d] transition-all flex items-center justify-center gap-3 active:scale-95">
                   Submit <Send size={18} />
                 </button>

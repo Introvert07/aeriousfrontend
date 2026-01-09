@@ -11,6 +11,39 @@ const NightRating = () => {
   const headerRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(null);
 
+  // --- FORM STATE ---
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const recipient = "director@aeriuspilotacademy.com";
+    const subject = encodeURIComponent(`Night Rating Inquiry - ${formData.name}`);
+    
+    const body = encodeURIComponent(
+      `Aerius Admissions Team,\n\n` +
+      `I would like to inquire about the Night Rating program.\n\n` +
+      `--- APPLICANT DETAILS ---\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Message: ${formData.message}\n\n` +
+      `Please provide the next steps for enrollment.`
+    );
+
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  };
+
   const { scrollYProgress } = useScroll({
     target: headerRef,
     offset: ["start start", "end start"]
@@ -91,17 +124,17 @@ const NightRating = () => {
                  <ShieldCheck className="text-[#e21d1d]" /> Prerequisites
                </h3>
                <div className="space-y-3 md:space-y-4">
-                {[
-                  "Applicant must hold PPL",
-                  "Applicant must be at least 18 years of age",
-                  "Applicant must hold a Class 1 Medical",
-                  "English proficiency (Read, Write, Speak)"
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-3 md:gap-4 items-center p-3 md:p-4 bg-gray-50 rounded-2xl">
-                    <CheckCircle2 size={20} className="text-[#1a2e6e] shrink-0" />
-                    <span className="text-xs md:text-sm font-black uppercase tracking-tight text-gray-700">{item}</span>
-                  </div>
-                ))}
+               {[
+                 "Applicant must hold PPL",
+                 "Applicant must be at least 18 years of age",
+                 "Applicant must hold a Class 1 Medical",
+                 "English proficiency (Read, Write, Speak)"
+               ].map((item, i) => (
+                 <div key={i} className="flex gap-3 md:gap-4 items-center p-3 md:p-4 bg-gray-50 rounded-2xl">
+                   <CheckCircle2 size={20} className="text-[#1a2e6e] shrink-0" />
+                   <span className="text-xs md:text-sm font-black uppercase tracking-tight text-gray-700">{item}</span>
+                 </div>
+               ))}
               </div>
             </div>
 
@@ -113,8 +146,6 @@ const NightRating = () => {
                 A Night Rating permits you to serve as pilot-in-command of an aircraft from sunset until sunrise, offering greater flexibility in your scheduling.
                </p>
                
-               
-
                <div className="space-y-4 md:space-y-6 border-t border-white/10 pt-6 md:pt-8">
                  <h4 className="text-lg md:text-xl font-black uppercase tracking-tight flex items-center gap-2">
                    <Navigation size={20} className="text-[#e21d1d]" /> What's included?
@@ -166,12 +197,43 @@ const NightRating = () => {
           <div className="lg:col-span-4 mt-10 lg:mt-0">
             <div className="lg:sticky lg:top-10 bg-white p-6 md:p-8 rounded-[2rem] shadow-2xl border-t-8 border-[#e21d1d]">
               <h3 className="text-xl md:text-2xl font-black uppercase mb-6 italic tracking-tighter">Submit Intel</h3>
-              <form className="space-y-4">
-                <input type="text" placeholder="Full Name" className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <input type="email" placeholder="Email Address" className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <input type="tel" placeholder="Phone Number" className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <textarea placeholder="Your Message" rows="4" className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm"></textarea>
-                <button className="w-full bg-[#1a2e6e] text-white font-black py-4 rounded-xl uppercase tracking-widest hover:bg-[#e21d1d] transition-colors flex items-center justify-center gap-3 text-sm">
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <input 
+                  type="text" 
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Full Name" 
+                  className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <input 
+                  type="email" 
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Email Address" 
+                  className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <input 
+                  type="tel" 
+                  name="phone"
+                  required
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Phone Number" 
+                  className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Your Message" 
+                  rows="4" 
+                  className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e] resize-none"
+                ></textarea>
+                <button type="submit" className="w-full bg-[#1a2e6e] text-white font-black py-4 rounded-xl uppercase tracking-widest hover:bg-[#e21d1d] transition-colors flex items-center justify-center gap-3 text-sm">
                   Submit <Send size={18} />
                 </button>
               </form>

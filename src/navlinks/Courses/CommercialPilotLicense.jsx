@@ -12,6 +12,39 @@ const CommercialPilotLICENCE = () => {
   const headerRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(null);
 
+  // --- FORM STATE ---
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const recipient = "director@aeriuspilotacademy.com";
+    const subject = encodeURIComponent(`CPL Career Inquiry - ${formData.name}`);
+    
+    const body = encodeURIComponent(
+      `Aerius Admissions Office,\n\n` +
+      `I am writing to express my interest in the Commercial Pilot Licence (CPL) program.\n\n` +
+      `--- APPLICANT PROFILE ---\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Message: ${formData.message}\n\n` +
+      `Please provide more information regarding the enrollment window and fee structure.`
+    );
+
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  };
+
   const { scrollYProgress } = useScroll({
     target: headerRef,
     offset: ["start start", "end start"]
@@ -174,12 +207,43 @@ const CommercialPilotLICENCE = () => {
           <div className="lg:col-span-4 mt-8 lg:mt-0">
             <div className="lg:sticky lg:top-10 bg-white p-6 md:p-8 rounded-[2rem] shadow-2xl border-t-8 border-[#e21d1d]">
               <h3 className="text-xl md:text-2xl font-black uppercase mb-6 italic tracking-tighter">Career Inquiry</h3>
-              <form className="space-y-4">
-                <input type="text" placeholder="Full Name" className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <input type="email" placeholder="Email Address" className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <input type="tel" placeholder="Phone Number" className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <textarea placeholder="Message" rows="4" className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm"></textarea>
-                <button className="w-full bg-[#1a2e6e] text-white font-black py-4 md:py-5 rounded-xl uppercase tracking-widest hover:bg-[#e21d1d] transition-colors flex items-center justify-center gap-3 text-xs md:text-sm">
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <input 
+                  type="text" 
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Full Name" 
+                  className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <input 
+                  type="email" 
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Email Address" 
+                  className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <input 
+                  type="tel" 
+                  name="phone"
+                  required
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Phone Number" 
+                  className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Message" 
+                  rows="4" 
+                  className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e] resize-none"
+                ></textarea>
+                <button type="submit" className="w-full bg-[#1a2e6e] text-white font-black py-4 md:py-5 rounded-xl uppercase tracking-widest hover:bg-[#e21d1d] transition-colors flex items-center justify-center gap-3 text-xs md:text-sm">
                   Submit <Send size={16} />
                 </button>
               </form>

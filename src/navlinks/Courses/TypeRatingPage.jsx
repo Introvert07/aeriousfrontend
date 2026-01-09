@@ -10,6 +10,38 @@ import typeRatingHero from '../../assets/typerating1.jpeg';
 
 const TypeRatingPage = () => {
   const headerRef = useRef(null);
+  
+  // --- FORM STATE ---
+  const [formData, setFormData] = useState({
+    name: '',
+    type: 'Select Type',
+    phone: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const recipient = "director@aeriuspilotacademy.com";
+    const subject = encodeURIComponent(`Type Rating Inquiry - ${formData.type} - ${formData.name}`);
+    
+    const body = encodeURIComponent(
+      `Aerius Admissions & BAA Training Partner,\n\n` +
+      `I am inquiring about the following Type Rating program:\n\n` +
+      `--- CANDIDATE PROFILE ---\n` +
+      `Name: ${formData.name}\n` +
+      `Selected Course: ${formData.type}\n` +
+      `Phone Number: ${formData.phone}\n\n` +
+      `Please provide the upcoming batch dates and the detailed breakdown of the € fee structure for Indian DGCA candidates.`
+    );
+
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  };
+
   const { scrollYProgress } = useScroll({
     target: headerRef,
     offset: ["start start", "end start"]
@@ -91,7 +123,7 @@ const TypeRatingPage = () => {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-[#1a2e6e]">
                 <School className="mb-4 text-[#e21d1d]" size={32} />
-                <h3 className="font-black uppercase mb-3">Facility Excellence</h3>
+                <h3 className="font-black uppercase mb-3 text-[#1a2e6e]">Facility Excellence</h3>
                 <ul className="text-sm space-y-2 text-gray-600 font-medium">
                   <li>• Level “D” New Generation Simulators</li>
                   <li>• 1 APT A320 + 3 Mock-up Devices</li>
@@ -101,7 +133,7 @@ const TypeRatingPage = () => {
               </div>
               <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-[#e21d1d]">
                 <Bed className="mb-4 text-[#1a2e6e]" size={32} />
-                <h3 className="font-black uppercase mb-3">Accommodation</h3>
+                <h3 className="font-black uppercase mb-3 text-[#1a2e6e]">Accommodation</h3>
                 <ul className="text-sm space-y-2 text-gray-600 font-medium">
                   <li>• Twin rooms within 5-min walk</li>
                   <li>• Gym, Pool, and Pantry access</li>
@@ -125,7 +157,7 @@ const TypeRatingPage = () => {
                       <p className="text-xs text-gray-500 font-medium">{mod.desc}</p>
                     </div>
                     <div className="text-right shrink-0">
-                      <span className="text-[10px] font-black uppercase bg-gray-100 px-3 py-1 rounded-full">
+                      <span className="text-[10px] font-black uppercase bg-gray-100 px-3 py-1 rounded-full text-[#1a2e6e]">
                         {mod.duration}
                       </span>
                     </div>
@@ -154,11 +186,11 @@ const TypeRatingPage = () => {
                 <div className="space-y-4">
                   <div className="bg-white p-3 rounded-xl border border-red-100">
                     <p className="text-[10px] text-gray-400 uppercase">A320 Initial TR</p>
-                    <p className="text-lg font-black italic">€ 14,000</p>
+                    <p className="text-lg font-black italic text-[#1a2e6e]">€ 14,000</p>
                   </div>
                   <div className="bg-white p-3 rounded-xl border border-red-100">
                     <p className="text-[10px] text-gray-400 uppercase">B737 NG Initial TR</p>
-                    <p className="text-lg font-black italic">€ 15,500</p>
+                    <p className="text-lg font-black italic text-[#1a2e6e]">€ 15,500</p>
                   </div>
                 </div>
               </div>
@@ -175,16 +207,37 @@ const TypeRatingPage = () => {
                   <h3 className="text-2xl font-black uppercase italic tracking-tighter">Register</h3>
                   <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-2">Next Batch Starting Soon</p>
                 </div>
-                <form className="space-y-4">
-                  <input type="text" placeholder="Full Name" className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                  <select className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm">
-                    <option>Select Type</option>
-                    <option>A320 Initial TR</option>
-                    <option>B737 NG Initial TR</option>
-                    <option>Renewal / IR</option>
+                <form onSubmit={handleFormSubmit} className="space-y-4">
+                  <input 
+                    type="text" 
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Full Name" 
+                    className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                  />
+                  <select 
+                    name="type"
+                    value={formData.type}
+                    onChange={handleInputChange}
+                    className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]"
+                  >
+                    <option disabled value="Select Type">Select Type</option>
+                    <option value="A320 Initial TR">A320 Initial TR</option>
+                    <option value="B737 NG Initial TR">B737 NG Initial TR</option>
+                    <option value="Renewal / IR">Renewal / IR</option>
                   </select>
-                  <input type="tel" placeholder="Phone Number" className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                  <button className="w-full bg-[#1a2e6e] text-white font-black py-5 rounded-2xl uppercase tracking-widest hover:bg-[#e21d1d] transition-all flex items-center justify-center gap-3">
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="Phone Number" 
+                    className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                  />
+                  <button type="submit" className="w-full bg-[#1a2e6e] text-white font-black py-5 rounded-2xl uppercase tracking-widest hover:bg-[#e21d1d] transition-all flex items-center justify-center gap-3">
                     Enquire Now <Send size={18} />
                   </button>
                 </form>
@@ -194,10 +247,10 @@ const TypeRatingPage = () => {
               <div className="bg-[#1a2e6e] p-8 rounded-[2rem] text-white">
                 <h4 className="font-black uppercase text-sm mb-4 italic">Global Approvals</h4>
                 <div className="grid grid-cols-2 gap-4 text-[10px] font-bold opacity-80">
-                  <div className="border border-white/20 p-2 rounded-lg">DGCA INDIA</div>
-                  <div className="border border-white/20 p-2 rounded-lg">CAA VIETNAM</div>
-                  <div className="border border-white/20 p-2 rounded-lg">CAA THAILAND</div>
-                  <div className="border border-white/20 p-2 rounded-lg">CAA MALAYSIA</div>
+                  <div className="border border-white/20 p-2 rounded-lg text-center">DGCA INDIA</div>
+                  <div className="border border-white/20 p-2 rounded-lg text-center">CAA VIETNAM</div>
+                  <div className="border border-white/20 p-2 rounded-lg text-center">CAA THAILAND</div>
+                  <div className="border border-white/20 p-2 rounded-lg text-center">CAA MALAYSIA</div>
                 </div>
               </div>
             </div>

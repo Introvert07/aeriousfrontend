@@ -12,8 +12,40 @@ const PrivatePilotLICENCE = () => {
   const headerRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(null);
 
+  // --- FORM STATE ---
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const recipient = "director@aeriuspilotacademy.com";
+    const subject = encodeURIComponent(`PPL Enquiry - ${formData.name}`);
+    
+    const body = encodeURIComponent(
+      `Hello Aerius Team,\n\n` +
+      `I am interested in the Private Pilot Licence (PPL) program.\n\n` +
+      `--- ENQUIRY DETAILS ---\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Message: ${formData.message}\n\n` +
+      `Please get back to me with further details.`
+    );
+
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  };
+
   // Parallax Logic
-  
   const { scrollYProgress } = useScroll({
     target: headerRef,
     offset: ["start start", "end start"]
@@ -91,20 +123,20 @@ const PrivatePilotLICENCE = () => {
                  <UserCheck className="text-[#e21d1d]" /> Prerequisites
                </h3>
                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  "Applicant must be at least 17 years of age",
-                  "Applicant must hold a Class 2 Medical",
-                  "Experience— Not less than 40 hrs of flight time",
-                  "Medical Fitness— Approved practitioner certificate",
-                  "Education— 10th or equivalent Examination",
-                  "Skill— Examiner competency check within 6 months",
-                  "Proficiency in reading/speaking English"
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-3 items-start p-2">
-                    <CircleCheck size={18} className="text-[#1a2e6e] shrink-0 mt-1" />
-                    <span className="text-sm font-bold text-gray-600">{item}</span>
-                  </div>
-                ))}
+               {[
+                 "Applicant must be at least 17 years of age",
+                 "Applicant must hold a Class 2 Medical",
+                 "Experience— Not less than 40 hrs of flight time",
+                 "Medical Fitness— Approved practitioner certificate",
+                 "Education— 10th or equivalent Examination",
+                 "Skill— Examiner competency check within 6 months",
+                 "Proficiency in reading/speaking English"
+               ].map((item, i) => (
+                 <div key={i} className="flex gap-3 items-start p-2">
+                   <CircleCheck size={18} className="text-[#1a2e6e] shrink-0 mt-1" />
+                   <span className="text-sm font-bold text-gray-600">{item}</span>
+                 </div>
+               ))}
               </div>
             </div>
 
@@ -128,18 +160,18 @@ const PrivatePilotLICENCE = () => {
             <div className="space-y-8">
                <h3 className="text-2xl md:text-3xl font-black uppercase italic tracking-tighter">Key Features</h3>
                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[
-                    { title: "Personal Use", desc: "Earn the basic pilot LICENCE certification (FAA/ICAO PPL).", icon: <Award className="text-[#e21d1d]" /> },
-                    { title: "Fun & Leisure", desc: "PPL holder can fly solo for fun and leisure.", icon: <PlaneTakeoff className="text-[#e21d1d]" /> },
-                    { title: "Short-Term", desc: "Requires 40-50 hours of flying experience.", icon: <Clock className="text-[#e21d1d]" /> },
-                    { title: "Advanced Path", desc: "Opportunity to advance to CPL and ATPL programs.", icon: <Navigation className="text-[#e21d1d]" /> }
-                  ].map((feature, i) => (
-                    <div key={i} className="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all">
-                      <div className="mb-4">{feature.icon}</div>
-                      <h4 className="font-black text-sm uppercase mb-2">{feature.title}</h4>
-                      <p className="text-xs text-gray-500 leading-relaxed font-medium">{feature.desc}</p>
-                    </div>
-                  ))}
+                 {[
+                   { title: "Personal Use", desc: "Earn the basic pilot LICENCE certification (FAA/ICAO PPL).", icon: <Award className="text-[#e21d1d]" /> },
+                   { title: "Fun & Leisure", desc: "PPL holder can fly solo for fun and leisure.", icon: <PlaneTakeoff className="text-[#e21d1d]" /> },
+                   { title: "Short-Term", desc: "Requires 40-50 hours of flying experience.", icon: <Clock className="text-[#e21d1d]" /> },
+                   { title: "Advanced Path", desc: "Opportunity to advance to CPL and ATPL programs.", icon: <Navigation className="text-[#e21d1d]" /> }
+                 ].map((feature, i) => (
+                   <div key={i} className="p-6 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all">
+                     <div className="mb-4">{feature.icon}</div>
+                     <h4 className="font-black text-sm uppercase mb-2">{feature.title}</h4>
+                     <p className="text-xs text-gray-500 leading-relaxed font-medium">{feature.desc}</p>
+                   </div>
+                 ))}
                </div>
             </div>
 
@@ -174,12 +206,43 @@ const PrivatePilotLICENCE = () => {
           <div className="lg:col-span-4 mt-10 lg:mt-0">
             <div className="lg:sticky lg:top-10 bg-white p-6 md:p-8 rounded-[2rem] shadow-2xl border-t-8 border-[#e21d1d]">
               <h3 className="text-xl md:text-2xl font-black uppercase mb-6 italic tracking-tighter">Enquire Now</h3>
-              <form className="space-y-4">
-                <input type="text" placeholder="Name" className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <input type="email" placeholder="Email" className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <input type="tel" placeholder="Phone Number" className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <textarea placeholder="Message" rows="4" className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm"></textarea>
-                <button className="w-full bg-[#1a2e6e] text-white font-black py-4 rounded-xl uppercase tracking-widest hover:bg-[#e21d1d] transition-colors flex items-center justify-center gap-3 text-sm">
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <input 
+                  type="text" 
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Name" 
+                  className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <input 
+                  type="email" 
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Email" 
+                  className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <input 
+                  type="tel" 
+                  name="phone"
+                  required
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Phone Number" 
+                  className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Message" 
+                  rows="4" 
+                  className="w-full p-4 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e] resize-none"
+                ></textarea>
+                <button type="submit" className="w-full bg-[#1a2e6e] text-white font-black py-4 rounded-xl uppercase tracking-widest hover:bg-[#e21d1d] transition-colors flex items-center justify-center gap-3 text-sm">
                   Submit <Send size={18} />
                 </button>
               </form>

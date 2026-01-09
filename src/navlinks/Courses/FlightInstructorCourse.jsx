@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { 
   GraduationCap, BookOpen, Users, ChevronDown, 
-  
   CheckCircle, Send, Clock, Navigation, Award, ShieldCheck 
 } from 'lucide-react';
 
@@ -12,6 +11,39 @@ import instructorHeaderImg from '../../assets/FIC-INSIDE.jpg';
 const FlightInstructorCourse = () => {
   const headerRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(null);
+
+  // --- FORM STATE ---
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    experience: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const recipient = "director@aeriuspilotacademy.com";
+    const subject = encodeURIComponent(`Flight Instructor Course Inquiry - ${formData.name}`);
+    
+    const body = encodeURIComponent(
+      `Dear Aerius Academy,\n\n` +
+      `I am interested in the Flight Instructor Course.\n\n` +
+      `--- INSTRUCTOR CANDIDATE DETAILS ---\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone}\n` +
+      `Flight Experience: ${formData.experience}\n\n` +
+      `Please let me know the next steps for enrollment.`
+    );
+
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  };
 
   // Parallax Logic
   const { scrollYProgress } = useScroll({
@@ -87,10 +119,10 @@ const FlightInstructorCourse = () => {
 
             {/* Prerequisites Block */}
             <div className="bg-white p-10 rounded-[3rem] border border-gray-100 shadow-sm relative overflow-hidden">
-               <h3 className="text-2xl font-black uppercase mb-8 flex items-center gap-3">
-                 <ShieldCheck className="text-[#e21d1d]" /> Prerequisites
-               </h3>
-               <div className="grid md:grid-cols-1 gap-4 text-sm font-bold text-gray-600 uppercase tracking-tight">
+                <h3 className="text-2xl font-black uppercase mb-8 flex items-center gap-3">
+                  <ShieldCheck className="text-[#e21d1d]" /> Prerequisites
+                </h3>
+                <div className="grid md:grid-cols-1 gap-4 text-sm font-bold text-gray-600 uppercase tracking-tight">
                 {[
                   "Applicant must be at least 18 years of age for issuance of Flight Instructor Course",
                   "Applicant must hold a Class 1 Medical",
@@ -106,61 +138,59 @@ const FlightInstructorCourse = () => {
 
             {/* Course Details Block */}
             <div className="bg-[#1a2e6e] text-white p-10 rounded-[3rem] shadow-xl relative overflow-hidden">
-               <Users className="absolute -bottom-10 -right-10 text-white opacity-5" size={300} />
-               <h3 className="text-3xl font-black uppercase mb-6 italic text-[#e21d1d]">Course Details</h3>
-               <p className="mb-8 opacity-90 leading-relaxed font-medium">
-                During your practical skill test, you will be evaluated on your ability to operate the aircraft from the right-hand seat and perform all maneuvers accurately and within established limits. You must also demonstrate your teaching skills both on the ground and in the air, ensuring safe aircraft operations throughout the student’s learning experience.
-               </p>
-               
-               <div className="bg-white/10 p-6 rounded-2xl border border-white/20 backdrop-blur-sm mb-8">
-                 <div className="flex items-center gap-3 mb-4">
-                   <Clock className="text-[#e21d1d]" />
-                   <h4 className="font-black uppercase tracking-widest text-sm">Practical Training Requirement</h4>
-                 </div>
-                 <p className="text-sm font-medium">The practical training includes a minimum of 30 hours of flight instruction, divided into two stages.</p>
-               </div>
-
-              
+                <Users className="absolute -bottom-10 -right-10 text-white opacity-5" size={300} />
+                <h3 className="text-3xl font-black uppercase mb-6 italic text-[#e21d1d]">Course Details</h3>
+                <p className="mb-8 opacity-90 leading-relaxed font-medium">
+                 During your practical skill test, you will be evaluated on your ability to operate the aircraft from the right-hand seat and perform all maneuvers accurately and within established limits. You must also demonstrate your teaching skills both on the ground and in the air, ensuring safe aircraft operations throughout the student’s learning experience.
+                </p>
+                
+                <div className="bg-white/10 p-6 rounded-2xl border border-white/20 backdrop-blur-sm mb-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Clock className="text-[#e21d1d]" />
+                    <h4 className="font-black uppercase tracking-widest text-sm">Practical Training Requirement</h4>
+                  </div>
+                  <p className="text-sm font-medium">The practical training includes a minimum of 30 hours of flight instruction, divided into two stages.</p>
+                </div>
             </div>
 
             {/* Program Roadmap */}
             <div className="space-y-12">
               <h3 className="text-3xl font-black uppercase italic tracking-tighter">Program Overview</h3>
               <div className="space-y-10 border-l-2 border-gray-100 ml-4 pl-8 relative">
-                 <div className="relative">
-                    <div className="absolute -left-[41px] top-0 w-5 h-5 bg-[#e21d1d] rounded-full border-4 border-white shadow-sm" />
-                    <h4 className="font-black uppercase text-[#1a2e6e] text-xl">Stage 1: Ground Classes in India (2-3 months)</h4>
-                    <div className="mt-4 grid md:grid-cols-2 gap-x-8 gap-y-3">
-                       {[
-                          "Police Verification", "Class 2 Medical from DGCA Approved Medical Examiner",
-                         "Computer Number from DGCA Exam Portal \"Pariksha\"", "Profile Creation on Egca (e-Governance of Civil Aviation)",
-                         "Class 1 Medical at IAF Medical Centre/ DGCA Approved Civil hospital", "VISA Formalities",
-                         "DGCA written Exam in Air Navigation, Meteorology and Air Regulations"
-                       ].map((item, i) => (
-                         <div key={i} className="text-[12px] font-bold text-gray-500 flex items-center gap-2 uppercase">
-                            <div className="w-1 h-1 bg-[#e21d1d] rounded-full" /> {item}
-                         </div>
-                       ))}
-                    </div>
-                 </div>
+                  <div className="relative">
+                     <div className="absolute -left-[41px] top-0 w-5 h-5 bg-[#e21d1d] rounded-full border-4 border-white shadow-sm" />
+                     <h4 className="font-black uppercase text-[#1a2e6e] text-xl">Stage 1: Ground Classes in India (2-3 months)</h4>
+                     <div className="mt-4 grid md:grid-cols-2 gap-x-8 gap-y-3">
+                        {[
+                           "Police Verification", "Class 2 Medical from DGCA Approved Medical Examiner",
+                          "Computer Number from DGCA Exam Portal \"Pariksha\"", "Profile Creation on Egca (e-Governance of Civil Aviation)",
+                          "Class 1 Medical at IAF Medical Centre/ DGCA Approved Civil hospital", "VISA Formalities",
+                          "DGCA written Exam in Air Navigation, Meteorology and Air Regulations"
+                        ].map((item, i) => (
+                          <div key={i} className="text-[12px] font-bold text-gray-500 flex items-center gap-2 uppercase">
+                             <div className="w-1 h-1 bg-[#e21d1d] rounded-full" /> {item}
+                          </div>
+                        ))}
+                     </div>
+                  </div>
 
-                 <div className="relative">
-                    <div className="absolute -left-[41px] top-0 w-5 h-5 bg-[#1a2e6e] rounded-full border-4 border-white shadow-sm" />
-                    <h4 className="font-black uppercase text-[#1a2e6e] text-xl">Stage 2: Flying Training ABROAD (12-15 months)</h4>
-                    <p className="text-sm text-gray-500 mt-3 font-medium leading-relaxed italic">
-                      Flying training in US, SPAIN, AUSTRALIA, NEW ZEALAND, PHILIPPINES & SOUTH AFRICA. Issue of FOREIGN CPL, Radio Licence and ELP Certificate level 4.
-                    </p>
-                 </div>
+                  <div className="relative">
+                     <div className="absolute -left-[41px] top-0 w-5 h-5 bg-[#1a2e6e] rounded-full border-4 border-white shadow-sm" />
+                     <h4 className="font-black uppercase text-[#1a2e6e] text-xl">Stage 2: Flying Training ABROAD (12-15 months)</h4>
+                     <p className="text-sm text-gray-500 mt-3 font-medium leading-relaxed italic">
+                       Flying training in US, SPAIN, AUSTRALIA, NEW ZEALAND, PHILIPPINES & SOUTH AFRICA. Issue of FOREIGN CPL, Radio Licence and ELP Certificate level 4.
+                     </p>
+                  </div>
 
-                 <div className="relative">
-                    <div className="absolute -left-[41px] top-0 w-5 h-5 bg-[#e21d1d] rounded-full border-4 border-white shadow-sm" />
-                    <h4 className="font-black uppercase text-[#1a2e6e] text-xl">Stage 3: Flying Test and Licence Conversion (1-2 months)</h4>
-                    <div className="mt-3 space-y-2 text-sm text-gray-500 font-medium">
-                      <p>Flight Tests in India in DGCA Approved Flying Training Institute</p>
-                      <p>Compilation of documents, paperwork and submission to DGCA</p>
-                      <p className="font-black text-[#1a2e6e] uppercase tracking-widest pt-2 underline decoration-[#e21d1d]">Issue of Indian CPL by DGCA</p>
-                    </div>
-                 </div>
+                  <div className="relative">
+                     <div className="absolute -left-[41px] top-0 w-5 h-5 bg-[#e21d1d] rounded-full border-4 border-white shadow-sm" />
+                     <h4 className="font-black uppercase text-[#1a2e6e] text-xl">Stage 3: Flying Test and Licence Conversion (1-2 months)</h4>
+                     <div className="mt-3 space-y-2 text-sm text-gray-500 font-medium">
+                       <p>Flight Tests in India in DGCA Approved Flying Training Institute</p>
+                       <p>Compilation of documents, paperwork and submission to DGCA</p>
+                       <p className="font-black text-[#1a2e6e] uppercase tracking-widest pt-2 underline decoration-[#e21d1d]">Issue of Indian CPL by DGCA</p>
+                     </div>
+                  </div>
               </div>
             </div>
           </div>
@@ -169,12 +199,44 @@ const FlightInstructorCourse = () => {
           <div className="lg:col-span-4">
             <div className="sticky top-10 bg-white p-8 rounded-[2.5rem] shadow-2xl border-t-8 border-[#e21d1d]">
               <h3 className="text-2xl font-black uppercase mb-6 italic tracking-tighter text-center">Join Our Faculty</h3>
-              <form className="space-y-4">
-                <input type="text" placeholder="Full Name" className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <input type="email" placeholder="Email Address" className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <input type="tel" placeholder="Phone Number" className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm" />
-                <textarea placeholder="Tell us about your flight experience..." rows="4" className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm"></textarea>
-                <button className="w-full bg-[#1a2e6e] text-white font-black py-5 rounded-2xl uppercase tracking-widest hover:bg-[#e21d1d] transition-colors flex items-center justify-center gap-3">
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <input 
+                  type="text" 
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Full Name" 
+                  className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <input 
+                  type="email" 
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Email Address" 
+                  className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <input 
+                  type="tel" 
+                  name="phone"
+                  required
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Phone Number" 
+                  className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e]" 
+                />
+                <textarea 
+                  name="experience"
+                  required
+                  value={formData.experience}
+                  onChange={handleInputChange}
+                  placeholder="Tell us about your flight experience..." 
+                  rows="4" 
+                  className="w-full p-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-[#1a2e6e] text-sm font-bold text-[#1a2e6e] resize-none"
+                ></textarea>
+                <button type="submit" className="w-full bg-[#1a2e6e] text-white font-black py-5 rounded-2xl uppercase tracking-widest hover:bg-[#e21d1d] transition-colors flex items-center justify-center gap-3">
                   Inquire Now <Send size={18} />
                 </button>
               </form>

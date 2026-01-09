@@ -1,47 +1,59 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Globe, Clock, ArrowUpRight, Loader2, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Globe, Clock, Loader2, CheckCircle2 } from 'lucide-react';
 
 const ContactPage = () => {
   const form = useRef();
   const [isSending, setIsSending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [startTime, setStartTime] = useState(null);
 
-  const sendEmail = async (e) => {
+  // Set a timestamp when the user lands on the page to prevent instant bot submissions
+  useEffect(() => {
+    setStartTime(Date.now());
+  }, []);
+
+  // --- EMAILJS CONFIGURATION ---
+
+
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+  const sendEmail = (e) => {
     e.preventDefault();
+
+    // --- QUOTA PROTECTION (Saves your 200 emails) ---
+    // 1. Honeypot check: If the hidden 'bot_field' is filled, it's a bot.
+    if (form.current.bot_field.value) {
+      return; 
+    }
+
+    // 2. Timing check: If submitted in less than 3 seconds, it's likely a bot.
+    const timeTaken = (Date.now() - startTime) / 1000;
+    if (timeTaken < 3) {
+      alert("Transmission too fast. Please review your details.");
+      return;
+    }
+
     setIsSending(true);
 
-    const formData = {
-      from_name: form.current.from_name.value,
-      from_email: form.current.reply_to.value,
-      phone: form.current.phone.value,
-      message: form.current.message.value
-    };
-
-    try {
-      const response = await fetch('http://localhost:5000/api/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+      .then((result) => {
         setIsSuccess(true);
         form.current.reset();
+        // Reset success state after 5 seconds
         setTimeout(() => setIsSuccess(false), 5000);
-      } else if (response.status === 429) {
-        // Handle Rate Limit specifically
-        alert("Too many requests. Please wait 15 minutes.");
-      } else {
-        const errorData = await response.json();
-        alert(errorData.errors ? "Invalid input data." : "Transmission Failed");
-      }
-    } catch (error) {
-      alert("Connection Error: Server might be down.");
-    } finally {
-      setIsSending(false);
-    }
+      }, (error) => {
+        console.error('EmailJS Error:', error.text);
+        alert("Transmission Failed. Please check your connection or try again later.");
+      })
+      .finally(() => {
+        setIsSending(false);
+      });
   };
+
   // Animation Variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -101,7 +113,7 @@ const ContactPage = () => {
         >
           <div className="rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden h-[350px] md:h-[500px] shadow-[0_32px_64px_-16px_rgba(26,46,110,0.1)] border-[6px] md:border-[12px] border-white relative group">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.6617061731674!2d77.3516584761726!3d28.55138138783063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5982869501d%3A0x633d76e33810141b!2sAmrapali%20Sapphire%20Noida!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.4258284534723!2d77.34863267528606!3d28.556965075706596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5cf9352e82b%3A0xc6c4217117e17088!2sAmrapali%20Sapphire%2C%20Sadarpur%2C%20Sector-45%2C%20Noida%2C%20Uttar%20Pradesh%20201303!5e0!3m2!1sen!2sin!4v1704810000000!5m2!1sen!2sin" 
               width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" className="grayscale group-hover:grayscale-0 transition-all duration-700"
             />
           </div>
@@ -120,7 +132,7 @@ const ContactPage = () => {
             {[
               { icon: MapPin, title: "Operations HQ", content: "1701, Tower N, Amrapali Sapphire, Noida Sec-45", color: "bg-[#1a2e6e]" },
               { icon: Phone, title: "Support Line", content: "+91 9999769084", color: "bg-[#e21d1d]" },
-              { icon: Mail, title: "Dispatch Email", content: "director@aeriusaviators.com", color: "bg-blue-500" },
+              { icon: Mail, title: "Dispatch Email", content: "director@aeriuspilotacademy.com", color: "bg-blue-500" },
               { icon: Clock, title: "Duty Hours", content: "Mon - Sat: 09:00 - 18:00 IST", color: "bg-slate-800" }
             ].map((item, idx) => (
               <motion.div 
@@ -148,20 +160,24 @@ const ContactPage = () => {
             className="lg:col-span-7 bg-white p-6 sm:p-10 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.05)] border border-white"
           >
             <form ref={form} onSubmit={sendEmail} className="space-y-5">
+              
+              {/* HONEYPOT FIELD (Hidden from humans, catches bots) */}
+              <input type="text" name="bot_field" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Pilot Name</label>
-                  <input name="from_name" type="text" required placeholder="John Doe" className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-[#1a2e6e] outline-none font-bold text-[#1a2e6e] transition-all" />
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Full Name</label>
+                  <input name="name" type="text" required placeholder="Your Name" className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-[#1a2e6e] outline-none font-bold text-[#1a2e6e] transition-all" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Email Address</label>
-                  <input name="reply_to" type="email" required placeholder="pilot@agency.com" className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-[#1a2e6e] outline-none font-bold text-[#1a2e6e] transition-all" />
+                  <input name="email" type="email" required placeholder="pilot@aerius.com" className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-[#1a2e6e] outline-none font-bold text-[#1a2e6e] transition-all" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Contact Number</label>
-                <input name="phone" type="tel" required placeholder="+91 ..." className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-[#1a2e6e] outline-none font-bold text-[#1a2e6e] transition-all" />
+                <input name="phone" type="tel" required placeholder="+91 00000 00000" className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-[#1a2e6e] outline-none font-bold text-[#1a2e6e] transition-all" />
               </div>
 
               <div className="space-y-2">

@@ -235,7 +235,7 @@ const ProgramOverview = () => {
 
                     <div className="flex flex-col sm:flex-row items-center gap-6 w-full md:w-auto">
                         <div className="text-center sm:text-right hidden sm:block">
-                            <p className="text-white font-bold text-xs uppercase tracking-widest">Admissions 2025-26</p>
+                            <p className="text-white font-bold text-xs uppercase tracking-widest">Admissions 2026-27</p>
                             <p className="text-slate-500 text-[10px] uppercase font-medium">Limited Slots Available</p>
                         </div>
                         
